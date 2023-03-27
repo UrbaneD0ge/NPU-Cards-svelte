@@ -3,5 +3,6 @@
     "activityBar.background": "#2F260D",
     "titleBar.activeBackground": "#413612",
     "titleBar.activeForeground": "#FCF9F3"
-  }
+  },
+  "dotenv.enableAutocloaking": false
 }

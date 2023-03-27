@@ -2,9 +2,11 @@
 <p>Search for your address below, or use your current location!</p>
 
 <script>
-  import Search from '../components/Search.svelte';
-  import Email from '../components/Email.svelte';
+  import Search from './Search.svelte';
+  import Email from './Email.svelte';
+  // import NPU from './NPU.svelte';
 </script>
 
 <Search />
 <Email />
+<!-- <NPU /> -->
