@@ -4,9 +4,10 @@
 <script>
   import Search from './Search.svelte';
   import Email from './Email.svelte';
-  // import NPU from './NPU.svelte';
 </script>
 
 <Search />
-<Email />
-<!-- <NPU /> -->
+<!-- {#if $geoStatus} -->
+  <!-- <NPU /> -->
+  <!-- {/if} -->
+  <Email />

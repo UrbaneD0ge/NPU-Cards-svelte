@@ -30,5 +30,5 @@
 </div>
 
 <script>
-  export let NPU
+
 </script>
