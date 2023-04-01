@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col s12">
     <div class="card">
-      <div class="card-content">
+      <h2>NPU-___</h2>
+      <!-- <div class="card-content">
         <h5 class="card-title">NPU-{NPU.NPU}
         </h5>
         <p>Neighborhood Planning Unit: <strong>
@@ -24,7 +25,7 @@
           {NPU.chairE}
         </a><br>
         <a href="{NPU.ZoomURL}" target='_blank' noopener noreferrer>Zoom Link</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

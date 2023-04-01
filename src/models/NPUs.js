@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const NPUSchema = new mongoose.Schema({
+const NPUSchema = new Schema({
   NPU: String,
   chair: String,
   chairE: String,
@@ -13,4 +13,4 @@ const NPUSchema = new mongoose.Schema({
   bylawsURL: String,
 });
 
-module.exports = mongoose.model("NPU", NPUSchema);
+// export default model("NPU", NPUSchema);

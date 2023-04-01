@@ -61,7 +61,7 @@ function getNPU(latitude, longitude) {
       const npu = data.features[0].attributes.NAME;
       results.innerText = npu;
       npuCard.style.display = 'block';
-      npuLink.href = `/npu?NPU=${npu}`;
+      npuLink.href = `/${npu}`;
       if (!data.features[0].attributes.NAME) {
         results.innerText = 'Not Found!?';
       }
