@@ -12,7 +12,7 @@ export async function load({ props }) {
     process.exit();
   });
 
-  const units = await NPUs.findOne({ NPU: "W" }).toArray();
+  const units = await NPUs.findOne({ NPU: req.npu }).toArray();
   console.log(units);
   return {
     props: {
