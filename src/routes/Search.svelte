@@ -38,7 +38,8 @@
 		fetch(uriToFetch)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("address data" + data);
+
+				console.log(data);
 				const latitude = data.candidates[0].location.y;
 				const longitude = data.candidates[0].location.x;
 				if (latitude && longitude) {
@@ -54,11 +55,11 @@
 		let npuCard = document.getElementById("npuCard");
 		let npuLink = document.getElementById("npuLink");
 		fetch(
-			`https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=3857&f=json`
+			`https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4326&f=json`
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				// console.log("NPU" + data);
+				console.log(data);
 				data.features[0].attributes.NAME
 					? console.log("NPU:" + data.features[0].attributes.NAME)
 					: console.log("not found");
@@ -81,14 +82,19 @@
 			<div class="input-field col s6">
 				<input id="address" type="text" class="" />
 				<label for="Address">Address</label>
-				<button on:click={addySearch} class="btn green">Address Search</button>
-				<button on:click={geoLocate} class="btn blue">🧭 Locate Me</button>
-				<span
+					<div class="container">
+						<div class="row">
+								<button on:click={addySearch} class="btn green m-2">Address Search</button>
+						</div>
+						<div class="row">
+					<button on:click={geoLocate} class="btn blue m-2">🧭 Locate Me</button>
+					<span
 					id="geoStatus"
 					class="helper-text"
-					data-error="Can't get your location..">{geoStatus}</span
-				>
-			</div>
+					data-error="Can't get your location..">{geoStatus}</span>
+					</div>
+					</div>
+				</div>
 		</div>
 	</form>
 
@@ -100,9 +106,15 @@
 					<a id="npuLink">
 						<h1 id="results">results go here</h1>
 					</a>
-					<br />
+					<br/>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	.card {
+		width: 200px;
+	}
+</style>

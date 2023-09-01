@@ -1,18 +1,22 @@
 <script context="module">
-  import { Schema, model } from "mongoose";
-import { NPUs } from '$db/NPUs';
+import { Schema, model } from "mongoose";
+// import { NPUs } from '$db/NPUs';
 // import { start_mongo } from '$db/mongo';
 import { mongoose } from 'mongoose';
 
-export async function load({ params }) {
-  // find the NPU in the database corresponding to the URL parameter
-  const data = await NPUs.findOne({ NPU: Request.params });
-  console.log(params, NPUs);
-  console.log('DB data: ' + data);
-  return {
-    NPUs: data
-  };
-};
+// start_mongo();
+
+// export async function load({ params }) {
+//   // find the NPU in the database corresponding to the URL parameter
+//   const data = await NPUs.findOne({ NPU: Request.params });
+//   console.log(params, NPUs);
+//   console.log('DB data: ' + data);
+//   return {
+//     NPUs: data
+//   };
+// };
+
+export let NPUs
 </script>
 
 <div class="row">
@@ -47,7 +51,6 @@ export async function load({ params }) {
   </div>
 </div>
 
-<script>
-  export let data
-$: NPUs = data
-</script>
+<!-- <script>
+  export let NPUs
+</script> -->
