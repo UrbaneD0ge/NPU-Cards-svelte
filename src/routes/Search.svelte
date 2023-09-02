@@ -1,5 +1,5 @@
 <script>
-	let geoStatus = "Click the 🧭 to find your location";
+	let geoStatus = "Find your location";
 	function geoLocate() {
 		// Get the location of the user and put address in the input field
 		if (!navigator.geolocation) {
@@ -82,11 +82,11 @@
 			<div class="input-field col s6">
 				<input id="address" type="text" class="" />
 				<label for="Address">Address</label>
-					<div class="container">
-						<div class="row">
+					<div class="row">
+						<div class="col">
 								<button on:click={addySearch} class="btn green m-2">Address Search</button>
 						</div>
-						<div class="row">
+						<div class="col">
 					<button on:click|once={geoLocate} class="btn blue m-2">🧭 Locate Me</button>
 					<span
 					id="geoStatus"

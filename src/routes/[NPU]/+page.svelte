@@ -1,4 +1,5 @@
-<div class="row">
+<div class="container">
+  <br><br>
   <div class="col s6">
     <div class="card">
       <h5 class="card-title center-align">Your NPU is:</h5>
@@ -26,7 +27,7 @@
           </strong></p>
         <p>Meeting Location: <strong>???</strong></p>
       </div>
-      <div class="card-action">
+      <div class="card-action text-darken-3">
         <a href="{NPUs.ZoomURL}" target='_blank' noopener noreferrer>Zoom Link</a>
         <br>
         <a href="{NPUs.bylawsURL}" target='_blank' noopener noreferrer>Bylaws Link</a>
@@ -43,7 +44,11 @@ $: ({NPUs} = data);
 </script>
 
 <style>
-  /* .card {
-    width: 400px;
-  } */
+h2 {
+  margin: 1rem;
+}
+
+.card {
+  padding: 10px
+}
 </style>
