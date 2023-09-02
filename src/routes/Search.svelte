@@ -35,7 +35,7 @@ import { invalidate } from '$app/navigation';
 			return;
 		}
 		let addressEncoded = encodeURIComponent(address);
-		let uriToFetch = `https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Street=&Single+Line+Input=${addressEncoded}&maxLocations=1&matchOutOfRange=true=&f=pjson`;
+		let uriToFetch = `https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Street=&Single+Line+Input=${addressEncoded}&maxLocations=1&matchOutOfRange=true&inSR=4130&outSR=4130&f=pjson`;
 		console.log(uriToFetch);
 		fetch(uriToFetch)
 			.then((response) => response.json())
@@ -45,7 +45,7 @@ import { invalidate } from '$app/navigation';
 				const latitude = data.candidates[0].location.y;
 				const longitude = data.candidates[0].location.x;
 				if (latitude && longitude) {
-					geoStatus = "Location found: " + latitude + ", " + longitude;
+					geoStatus = "Location found: " + latitude.toFixed(2) + ", " + longitude.toFixed(2);
 					getNPU(latitude, longitude);
 				} else {
 					results.innerText = "Not Found!?";
@@ -58,7 +58,7 @@ import { invalidate } from '$app/navigation';
 		let npuCard = document.getElementById("npuCard");
 		let npuLink = document.getElementById("npuLink");
 		fetch(
-			`https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4326&f=json`
+			`https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4130&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4130&f=json`
 		)
 			.then((response) => response.json())
 			.then((data) => {
