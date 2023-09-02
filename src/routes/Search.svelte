@@ -1,4 +1,6 @@
 <script>
+import { invalidate } from '$app/navigation';
+
 	let geoStatus = "Find your location";
 	function geoLocate() {
 		// Get the location of the user and put address in the input field
@@ -67,6 +69,8 @@
 				let npu = data.features[0].attributes.NAME;
 				results.innerText = npu;
 				npuCard.style.display = "block";
+
+				invalidate((url) => url.pathname === `${npu}`);
 				npuLink.href = `/${npu}`;
 				if (!data.features[0].attributes.NAME) {
 					results.innerText = "Not Found!?";

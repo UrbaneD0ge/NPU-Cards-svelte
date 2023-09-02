@@ -1,10 +1,10 @@
 import { NPUs } from '$db/NPUs';
 
-export async function load({ searchParams }) {
+export async function load({ url }) {
 
   // find the NPU in the database corresponding to the URL parameter
-  const data = await NPUs.findOne({ NPU: 'B' });
-  console.log(searchParams);
+  const data = await NPUs.findOne({ NPU: url.pathname[1] });
+  console.log(url.pathname[1]);
   // console.log(JSON.stringify(data));
 
   return {

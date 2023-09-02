@@ -35,7 +35,9 @@
     </div>
   </div>
 </div>
-
+<footer class="center-align">
+  <a href="/">↩ Go Back</a>
+</footer>
 <script>
   // export let NPUs
   export let data;

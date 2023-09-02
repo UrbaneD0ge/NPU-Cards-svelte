@@ -3,11 +3,11 @@
 
 <script>
   import Search from './Search.svelte';
-  import Email from './Email.svelte';
+  // import Email from './Email.svelte';
 </script>
 
 <Search />
 
   <!-- <NPU /> -->
 
-  <Email />
+  <!-- <Email /> -->
