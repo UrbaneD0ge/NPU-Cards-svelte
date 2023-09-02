@@ -1,3 +1,3 @@
 import db from '$db/mongo';
 
-export const NPUs = db.collection('NPUs');
+export const NPUs = db.collection('npus');

@@ -87,7 +87,7 @@
 								<button on:click={addySearch} class="btn green m-2">Address Search</button>
 						</div>
 						<div class="row">
-					<button on:click={geoLocate} class="btn blue m-2">🧭 Locate Me</button>
+					<button on:click|once={geoLocate} class="btn blue m-2">🧭 Locate Me</button>
 					<span
 					id="geoStatus"
 					class="helper-text"
