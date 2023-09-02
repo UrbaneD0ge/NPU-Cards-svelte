@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col s12">
+  <div class="col s6">
     <div class="card">
       <h5 class="card-title center-align">Your NPU is:</h5>
       <h2 class="center-align">NPU-{NPUs.NPU}</h2>
@@ -8,7 +8,14 @@
           {NPUs.NPU}
           </strong></p>
         <p>Chair: <strong>
-          {NPUs.chair}
+          <a href="mailto:{NPUs.chairE}">
+            {NPUs.chair}
+          </a>
+          </strong></p>
+        <p>Planner: <strong>
+          <a href="mailto:{NPUs.plannerE}">
+            {NPUs.planner}
+          </a>
           </strong></p>
         <p>Meeting Frequency: <strong>
             {NPUs.meeting.split(',')[0]}
@@ -20,10 +27,9 @@
         <p>Meeting Location: <strong>???</strong></p>
       </div>
       <div class="card-action">
-        <a href="mailto:{NPUs.chairE}">
-          {NPUs.chairE}
-        </a><br>
         <a href="{NPUs.ZoomURL}" target='_blank' noopener noreferrer>Zoom Link</a>
+        <br>
+        <a href="{NPUs.bylawsURL}" target='_blank' noopener noreferrer>Bylaws Link</a>
       </div>
     </div>
   </div>
@@ -37,7 +43,7 @@ $: ({NPUs} = data);
 </script>
 
 <style>
-  .card {
-    width: 600px;
-  }
+  /* .card {
+    width: 400px;
+  } */
 </style>

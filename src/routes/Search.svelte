@@ -64,7 +64,7 @@
 					? console.log("NPU:" + data.features[0].attributes.NAME)
 					: console.log("not found");
 				// console.log(data.features[0].attributes.NAME);
-				const npu = data.features[0].attributes.NAME;
+				let npu = data.features[0].attributes.NAME;
 				results.innerText = npu;
 				npuCard.style.display = "block";
 				npuLink.href = `/${npu}`;

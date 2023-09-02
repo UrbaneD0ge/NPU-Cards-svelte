@@ -7,7 +7,7 @@
 </script>
 
 <Search />
-<!-- {#if $geoStatus} -->
+
   <!-- <NPU /> -->
-  <!-- {/if} -->
+
   <Email />
