@@ -19,12 +19,9 @@
           </a>
           </strong></p>
         <p>Meeting Frequency: <strong>
-            {NPUs.meeting.split(',')[0]}
-          </strong></p>
-        <p>Meeting Location: <strong>???</strong></p>
-        <p>Meeting Time: <strong>
-          {NPUs.meeting.split(',')[1]}
-          </strong></p>
+            {NPUs.meeting.split(',')[0]} at
+            {NPUs.meeting.split(',')[1]}
+            </strong></p>
         <p>Meeting Location: <strong>???</strong></p>
       </div>
       <div class="card-action text-darken-3">
