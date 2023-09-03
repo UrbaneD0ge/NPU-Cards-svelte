@@ -1,5 +1,5 @@
 <script>
-import { invalidate } from '$app/navigation';
+import { base } from '$app/paths';
 
 	let geoStatus = "Find your location";
 	function geoLocate() {
@@ -71,7 +71,7 @@ import { invalidate } from '$app/navigation';
 				results.innerText = npu;
 				npuCard.style.display = "block";
 
-				npuLink.href = `/${npu}`;
+				npuLink.href = `${base}/${npu}`;
 				if (!data.features[0].attributes.NAME) {
 					results.innerText = "Not Found!?";
 				}
