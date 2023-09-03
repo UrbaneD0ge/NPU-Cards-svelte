@@ -5,9 +5,9 @@
 	"scripts": {
 		"dev": "vite dev",
 		"dev --host": "vite dev --host",
-		"build": "node -r dotenv/config build",
+		"build": "vite build",
 		"preview": "vite preview",
-		"deploy": "node -r dotenv/config build && npx gh-pages -d build -t true"
+		"deploy": "vite build && npx gh-pages -d build -t true"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
