@@ -5,9 +5,9 @@
 	"scripts": {
 		"dev": "vite dev",
 		"dev --host": "vite dev --host",
-		"build": "vite build",
+		"build": "node -r dotenv/config build",
 		"preview": "vite preview",
-		"deploy": "vite build && npx gh-pages -d build -t true"
+		"deploy": "node -r dotenv/config build && npx gh-pages -d build -t true"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
@@ -20,7 +20,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"dotenv": "^16.0.3",
+		"dotenv": "^16.3.1",
 		"mongodb": "^6.0.0",
 		"mongoose": "^7.5.0"
 	}
