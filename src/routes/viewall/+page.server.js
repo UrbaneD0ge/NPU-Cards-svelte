@@ -1,22 +1,13 @@
-import { Error } from "@sveltejs/kit";
-import { NPUs } from "$db/NPUs";
-import { start_mongo } from '$db/mongo';
+import { NPUs } from '$db/NPUs';
 
+export async function load({ context }) {
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load({ props }) {
-  start_mongo().then(() => {
-    console.log('Connected to MongoDB!');
-  }).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
-  });
+  // get all NPU data from db
+  const data = await NPUs.find().project({ _id: 0 }).sort({ NPU: 'asc' }).toArray();
+  // const data = await NPUs.find();
+  // console.log(data);
 
-  const units = await NPUs.findOne({ NPU: req.npu }).toArray();
-  console.log(units);
   return {
-    props: {
-      units: units
-    },
+    NPUs: data,
   };
 };

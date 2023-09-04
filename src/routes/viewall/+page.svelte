@@ -1,18 +1,78 @@
 <script>
-  export let units;
+  import Nav from '../Nav.svelte';
+  export let data;
 
-// $: ({units} = npus )
+  $: ({ NPUs } = data);
 </script>
 
-<h1>View All NPUs</h1>
+<Nav />
+<div class="container">
+  <h1>View All NPUs</h1>
+</div>
 
-{#each units as npu}
-  <div class="npu">
-    <h2>{npu.npu}</h2>
-    <p>{npu.name}</p>
-    <p>{npu.address}</p>
-    <p>{npu.phone}</p>
-    <p>{npu.email}</p>
-    <p>{npu.website}</p>
-  </div>
-{/each}
+<div id="card-container">
+  {#each NPUs as unit}
+    <div class="card col-2">
+      <h2 class="center-align">NPU-{unit.NPU}</h2>
+      <div class="card-content">
+        <p>
+          Neighborhood Planning Unit: <strong>
+            {unit.NPU}
+          </strong>
+        </p>
+        <p>
+          Chair: <strong>
+            <a href="mailto:{unit.chairE}">
+              {unit.chair}
+            </a>
+          </strong>
+        </p>
+        <p>
+          Planner: <strong>
+            <a href="mailto:{unit.plannerE}">
+              {unit.planner}
+            </a>
+          </strong>
+        </p>
+        <p>
+          Meeting Frequency: <strong>
+            {unit.meeting.split(',')[0]} at
+            {unit.meeting.split(',')[1]}
+          </strong>
+        </p>
+        {#if unit.isHybrid === true}
+          <p>
+            Meeting Location: <strong>{unit.location}</strong>
+          </p>
+        {:else}
+          <p>
+            Meeting Location: <strong>Virtual</strong>
+          </p>
+        {/if}
+      </div>
+      <div class="card-action text-darken-3">
+        <a href={unit.ZoomURL} target="_blank" noopener noreferrer>Zoom Link</a>
+        <br />
+        <a href={unit.bylawsURL} target="_blank" noopener noreferrer
+          >Bylaws Link</a
+        >
+      </div>
+    </div>
+  {/each}
+</div>
+
+<style>
+  .card {
+    width: 20svw;
+    min-width: 2.5in;
+    flex-direction: row;
+  }
+
+  #card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+</style>

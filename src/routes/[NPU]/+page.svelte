@@ -1,10 +1,11 @@
 <script>
-  // export let NPUs
+  import Nav from '../Nav.svelte';
   export let data;
 
   $: ({ NPUs } = data);
 </script>
 
+<Nav />
 <div class="container">
   <br /><br />
   <div class="col s6">

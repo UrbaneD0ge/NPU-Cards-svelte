@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const NPUSchema = new Schema({
+const NPUSchema = new mongoose.Schema({
   NPU: String,
   chair: String,
   chairE: String,
@@ -11,6 +11,8 @@ const NPUSchema = new Schema({
   ZoomPW: String,
   ZoomURL: String,
   bylawsURL: String,
+  isHybrid: Boolean,
+  location: String
 });
 
-// export default model("NPU", NPUSchema);
+export default model("NPUs", NPUSchema);
