@@ -1,6 +1,7 @@
 <script>
   import Search from './Search.svelte';
-  // import Email from './Email.svelte';
+  import Map from './Map.svelte'
+  import Email from './Email.svelte';
 </script>
 
 
@@ -9,7 +10,8 @@
 
 
 <Search />
+<Map />
 
-  <!-- <NPU /> -->
+<!-- <NPU /> -->
 
-  <!-- <Email /> -->
+<Email />

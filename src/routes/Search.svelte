@@ -91,7 +91,7 @@ import { base } from '$app/paths';
 								<button on:click={addySearch} class="btn green m-2">Address Search</button>
 						</div>
 						<div class="col">
-					<button on:click|once={geoLocate} class="btn blue m-2">🧭 Locate Me</button>
+					<button on:click={geoLocate} class="btn blue m-2">🧭 Locate Me</button>
 				</div>
 			</div>
 			<span
