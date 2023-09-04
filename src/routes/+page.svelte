@@ -1,7 +1,7 @@
 <script>
   import Search from './Search.svelte';
-  import Map from './Map.svelte';
-  import Email from './Email.svelte';
+  // import Map from './Map.svelte';
+  // import Email from './Email.svelte';
 </script>
 
 <h1>NPU Locator</h1>
@@ -9,4 +9,4 @@
 
 <Search />
 <!-- <Map /> -->
-<Email />
+<!-- <Email /> -->

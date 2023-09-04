@@ -11,6 +11,8 @@ const NPUSchema = new Schema({
   ZoomPW: String,
   ZoomURL: String,
   bylawsURL: String,
+  isHybrid: Boolean,
+  location: String
 });
 
 // export default model("NPU", NPUSchema);
