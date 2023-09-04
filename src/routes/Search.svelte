@@ -1,6 +1,4 @@
 <script>
-import { base } from '$app/paths';
-
 	let geoStatus = "Find your location";
 	function geoLocate() {
 		// Get the location of the user and put address in the input field
@@ -51,7 +49,7 @@ import { base } from '$app/paths';
 					results.innerText = "Not Found!?";
 				}
 			});
-	}
+	};
 
 	function getNPU(latitude, longitude) {
 		let results = document.getElementById("results");
@@ -76,7 +74,8 @@ import { base } from '$app/paths';
 					results.innerText = "Not Found!?";
 				}
 			});
-	}
+	};
+
 </script>
 
 <div>
