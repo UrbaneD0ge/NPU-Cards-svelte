@@ -59,7 +59,7 @@
 <style>
   .card {
     width: 20svw;
-    min-width: 2.5in;
+    min-width: 2.8in;
     flex-direction: row;
   }
 

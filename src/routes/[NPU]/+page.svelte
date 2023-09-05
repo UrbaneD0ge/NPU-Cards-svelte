@@ -69,8 +69,8 @@
 
   .card {
     padding: 10px;
-    max-width: 50svw;
-    min-width: fit-content;
+    width: 400px;
+    height: 400px;
   }
 
   #cardParent {
