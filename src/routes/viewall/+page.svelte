@@ -7,19 +7,14 @@
 
 <Nav />
 <div class="container">
-  <h1>All NPUs</h1>
+  <h1>Neighborhood Planning Units</h1>
 </div>
 
 <div id="card-container">
   {#each NPUs as unit}
     <div class="card col-2">
-      <h2 class="center-align">NPU-{unit.NPU}</h2>
+      <h2 class="center-align"><a href="/{unit.NPU}">NPU-{unit.NPU}</a></h2>
       <div class="card-content">
-        <p>
-          Neighborhood Planning Unit: <strong>
-            {unit.NPU}
-          </strong>
-        </p>
         <p>
           Chair: <strong>
             <a href="mailto:{unit.chairE}">

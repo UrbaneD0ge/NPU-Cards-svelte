@@ -6,9 +6,9 @@
 </script>
 
 <Nav />
-<div class="container">
+<div id="cardParent" class="container">
   <br /><br />
-  <div class="col s6">
+  <div class="col">
     <div class="card">
       <h5 class="card-title center-align">Your NPU is:</h5>
       <h2 class="center-align">NPU-{NPUs.NPU}</h2>
@@ -64,10 +64,20 @@
 
 <style>
   h2 {
-    margin: 1rem;
+    margin: 0;
   }
 
   .card {
     padding: 10px;
+    max-width: 50svw;
+    min-width: fit-content;
+  }
+
+  #cardParent {
+    /* margin: 3rem; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 </style>
