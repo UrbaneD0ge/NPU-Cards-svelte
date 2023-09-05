@@ -7,7 +7,7 @@
 
 <Nav />
 <div class="container">
-  <h1>View All NPUs</h1>
+  <h1>All NPUs</h1>
 </div>
 
 <div id="card-container">

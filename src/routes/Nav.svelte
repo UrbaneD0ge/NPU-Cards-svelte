@@ -6,7 +6,7 @@
 </nav>
 
 <style>
-  li {
-    padding-inline: 10px;
+  nav {
+    padding-inline: 20px;
   }
 </style>
