@@ -1,11 +1,9 @@
 <script>
-  import Nav from '../Nav.svelte';
   export let data;
 
   $: ({ NPUs } = data);
 </script>
 
-<Nav />
 <div id="cardParent" class="container">
   <br /><br />
   <div class="col">

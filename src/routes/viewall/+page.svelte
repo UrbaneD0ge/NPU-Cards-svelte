@@ -1,11 +1,9 @@
 <script>
-  import Nav from '../Nav.svelte';
   export let data;
 
   $: ({ NPUs } = data);
 </script>
 
-<Nav />
 <div class="container">
   <h1>Neighborhood Planning Units</h1>
 </div>

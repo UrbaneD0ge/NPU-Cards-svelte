@@ -1,13 +1,13 @@
 <script>
   import Search from './Search.svelte';
-  import Nav from './Nav.svelte';
+  // import Nav from './Nav.svelte';
   // import Email from './Email.svelte';
 </script>
 
-<Nav />
+<!-- <Nav /> -->
 
 <div class="container">
-  <h1>NPU Locator</h1>
+  <h1>NPU LOCATOR</h1>
   <p>Search for your address below, or use your current location!</p>
 
   <Search />
@@ -16,3 +16,26 @@
 
   <!-- <Email /> -->
 </div>
+
+<style>
+  @font-face {
+    font-family: 'Tungsten-SemiBold';
+    src: url(fonts/Tungsten-Semibold.otf) format('opentype');
+    letter-spacing: 2pt;
+  }
+
+  @font-face {
+    font-family: 'GT-Eesti';
+    src: url(fonts/GT-Eesti-Display-Regular.otf) format('opentype');
+  }
+
+  h1 {
+    font-family: 'Tungsten-SemiBold';
+    font-size: 6rem;
+  }
+
+  p {
+    font-family: 'Gt-Eesti';
+    font-size: 1.4rem;
+  }
+</style>

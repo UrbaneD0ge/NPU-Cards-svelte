@@ -4,5 +4,8 @@
     "titleBar.activeBackground": "#413612",
     "titleBar.activeForeground": "#FCF9F3"
   },
-  "dotenv.enableAutocloaking": false
+  "dotenv.enableAutocloaking": false,
+  "cSpell.words": [
+    "Eesti"
+  ]
 }

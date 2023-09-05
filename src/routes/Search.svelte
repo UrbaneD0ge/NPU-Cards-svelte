@@ -35,16 +35,22 @@
     }
     let addressEncoded = encodeURIComponent(address);
     let uriToFetch = `https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Street=&Single+Line+Input=${addressEncoded}&maxLocations=1&matchOutOfRange=true&inSR=4130&outSR=4130&f=pjson`;
-    console.log(uriToFetch);
+    // console.log(uriToFetch);
     fetch(uriToFetch)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        if (data.candidates.length === 0) {
+          // console.log('Address not found');
+          geoStatus = 'Address not found. Example: 123 Peachtree St. NE';
+          document.getElementById('npuCard')?.setAttribute('hidden', true);
+          return;
+        }
         let latitude = data.candidates[0]?.location.y;
         let longitude = data.candidates[0]?.location.x;
         if (latitude && longitude) {
           geoStatus =
-            'Location found: ' +
+            'Location found!' +
             latitude.toFixed(2) +
             ', ' +
             longitude.toFixed(2);
@@ -66,16 +72,17 @@
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        data.features[0].attributes.NAME
-          ? console.log('NPU:' + data.features[0].attributes.NAME)
-          : console.log('not found');
-        // console.log(data.features[0].attributes.NAME);
-        let npu = data.features[0].attributes.NAME;
-        results.innerText = npu;
-        npuCard.style.display = 'block';
-        npuLink.href = `/${npu}`;
-        if (!data.features[0].attributes.NAME) {
+        data.features[0].attributes.NAME;
+        // ? console.log('NPU:' + data.features[0].attributes.NAME)
+        // : console.log('not found');
+        try {
+          let npu = data.features[0].attributes.NAME;
+          results.innerText = npu;
+          npuCard.removeAttribute('hidden');
+          npuLink.href = `/${npu}`;
+        } catch {
           results.innerText = '🤔';
+          npuCard.removeAttribute('hidden');
         }
       });
   }
@@ -86,7 +93,7 @@
     <div class="row m2">
       <br />
       <div class="input-field col s12">
-        <input id="address" type="text" class="" />
+        <input id="address" type="text" />
         <label for="Address">Address</label>
         <div class="row">
           <div class="col">
@@ -95,7 +102,7 @@
             >
           </div>
           <div class="col">
-            <button on:click|once={geoLocate} class="btn blue m-2"
+            <button on:click={geoLocate} class="btn blue m-2"
               >🧭 Locate Me</button
             >
           </div>
@@ -113,9 +120,9 @@
     <div class="cardParent">
       <div class="card">
         <div class="card-content center-align">
-          <h3>Your NPU is:</h3>
+          <h3>YOUR NPU IS:</h3>
           <a id="npuLink">
-            <h1 id="results">results go here</h1>
+            <h1 id="results">Not found!</h1>
           </a>
           <br />
         </div>
@@ -137,5 +144,32 @@
 
   #results {
     font-size: 10rem;
+  }
+
+  @font-face {
+    font-family: 'Tungsten-SemiBold';
+    src: url(fonts/Tungsten-Semibold.otf) format('opentype');
+    letter-spacing: 2pt;
+  }
+
+  @font-face {
+    font-family: 'GT-Eesti';
+    src: url(fonts/GT-Eesti-Display-Regular.otf) format('opentype');
+  }
+
+  h1 {
+    font-family: 'Tungsten-SemiBold';
+    font-size: 10rem;
+  }
+  h3 {
+    font-family: 'Tungsten-SemiBold';
+    font-size: 4rem;
+  }
+
+  label,
+  input,
+  span {
+    font-family: 'Gt-Eesti';
+    font-size: 1.4rem;
   }
 </style>
