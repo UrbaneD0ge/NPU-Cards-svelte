@@ -1,4 +1,6 @@
 <script>
+  import Card from './Card.svelte';
+
   let geoStatus = 'Find your location';
   function geoLocate() {
     // Get the location of the user and put address in the input field
@@ -86,6 +88,13 @@
         }
       });
   }
+
+  let flipped = false;
+
+  // export let data;
+  // export let NPUs;
+
+  // $: ({ NPUs } = data);
 </script>
 
 <div>
@@ -118,6 +127,7 @@
 
   <div id="npuCard" class="center-align" hidden>
     <div class="cardParent">
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="card">
         <div class="card-content center-align">
           <h3>YOUR NPU IS:</h3>
@@ -130,6 +140,10 @@
     </div>
   </div>
 </div>
+
+{#if flipped}
+  <Card />
+{/if}
 
 <style>
   .cardParent {
