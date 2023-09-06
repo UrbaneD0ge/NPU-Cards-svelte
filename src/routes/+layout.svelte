@@ -1,7 +1,13 @@
+<script>
+  import { page } from '$app/stores';
+</script>
+
 <nav class="navbar-fixed nav-wrapper black">
   <a href="/" class="brand-logo left">NPU LOCATOR</a>
   <ul class="right">
-    <li><a href="/viewall">View All NPUs</a></li>
+    {#if $page.route.id !== '/viewall'}
+      <li><a href="/viewall">View All NPUs</a></li>
+    {/if}
   </ul>
 </nav>
 

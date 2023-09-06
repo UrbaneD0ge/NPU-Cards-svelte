@@ -97,12 +97,12 @@
         <label for="Address">Address</label>
         <div class="row">
           <div class="col">
-            <button on:click={addySearch} class="btn green m-2"
+            <button on:click={addySearch} class="btn teal m-2"
               >Address Search</button
             >
           </div>
           <div class="col">
-            <button on:click={geoLocate} class="btn blue m-2"
+            <button on:click={geoLocate} class="btn amber accent-3 m-2"
               >🧭 Locate Me</button
             >
           </div>
@@ -138,8 +138,15 @@
   }
 
   .card {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
+    scale: 1;
+    transition: scale 0.5s ease-out;
+  }
+
+  .card:hover {
+    scale: 1.05;
+    transition: scale 0.5s ease-out;
   }
 
   #results {
@@ -159,11 +166,12 @@
 
   h1 {
     font-family: 'Tungsten-SemiBold';
-    font-size: 10rem;
+    font-size: 11rem;
+    margin: 0;
   }
   h3 {
     font-family: 'Tungsten-SemiBold';
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 
   label,
@@ -171,5 +179,8 @@
   span {
     font-family: 'Gt-Eesti';
     font-size: 1.4rem;
+  }
+  button {
+    font-family: 'Gt-Eesti';
   }
 </style>

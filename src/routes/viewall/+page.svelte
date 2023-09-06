@@ -5,7 +5,7 @@
 </script>
 
 <div class="container">
-  <h1>Neighborhood Planning Units</h1>
+  <h1>NEIGHBORHOOD PLANNING UNITS</h1>
 </div>
 
 <div id="card-container">
@@ -55,10 +55,49 @@
 </div>
 
 <style>
+  @font-face {
+    font-family: 'Tungsten-SemiBold';
+    src: url(fonts/Tungsten-Semibold.otf) format('opentype');
+    letter-spacing: 2pt;
+  }
+
+  @font-face {
+    font-family: 'GT-Eesti';
+    src: url(fonts/GT-Eesti-Display-Regular.otf) format('opentype');
+  }
+
+  h2 {
+    margin: 2rem 2rem 0 2rem;
+  }
+
+  h2 a {
+    font-size: 5rem;
+    color: black;
+    margin: 0 !important;
+  }
+
+  h1,
+  h2 a {
+    font-family: 'Tungsten-SemiBold';
+  }
+
+  p {
+    font-family: 'GT-Eesti';
+  }
+
   .card {
     width: 20svw;
     min-width: 2.8in;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    scale: 1;
+    transition: scale 0.5s ease-out;
+  }
+
+  .card:hover {
+    scale: 1.05;
+    transition: scale 0.5s ease-out;
   }
 
   #card-container {

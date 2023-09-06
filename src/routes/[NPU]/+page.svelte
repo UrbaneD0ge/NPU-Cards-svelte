@@ -46,7 +46,7 @@
           </p>
         {/if}
       </div>
-      <div class="card-action text-darken-3">
+      <div class="card-action transparent text-darken-3">
         <a href={NPUs.ZoomURL} target="_blank" noopener noreferrer>Zoom Link</a>
         <br />
         <a href={NPUs.bylawsURL} target="_blank" noopener noreferrer
@@ -61,10 +61,28 @@
 </footer>
 
 <style>
-  h2 {
-    margin: 0;
+  @font-face {
+    font-family: 'Tungsten-SemiBold';
+    src: url(fonts/Tungsten-Semibold.otf) format('opentype');
+    letter-spacing: 2pt;
   }
 
+  @font-face {
+    font-family: 'GT-Eesti';
+    src: url(fonts/GT-Eesti-Display-Regular.otf) format('opentype');
+  }
+
+  h2 {
+    font-family: 'Tungsten-SemiBold';
+    margin: 0;
+    font-size: 6rem;
+  }
+
+  p,
+  h5,
+  a {
+    font-family: 'GT-Eesti';
+  }
   .card {
     padding: 10px;
     width: 400px;
