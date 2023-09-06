@@ -7,7 +7,7 @@
 		"dev --host": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview",
-		"deploy": "vite build && npx gh-pages -d build -t true"
+		"deploy": "vite build && vercel"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
