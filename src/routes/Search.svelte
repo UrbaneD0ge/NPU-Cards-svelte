@@ -1,5 +1,6 @@
 <script>
   let geoStatus = 'Find your location';
+
   function geoLocate() {
     // Get the location of the user and put address in the input field
     if (!navigator.geolocation) {
@@ -9,10 +10,7 @@
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      // const lat = document.querySelector('#lat');
-      // const lon = document.querySelector('#lon');
-      // lat.value = latitude;
-      // lon.value = longitude;
+      // console.log(latitude, longitude);
       geoStatus =
         'Location found: ' + latitude.toFixed(2) + ', ' + longitude.toFixed(2);
       // pass geoStatus as a prop to NPU.svelte
@@ -28,36 +26,34 @@
 
   function addySearch() {
     // Get the location of the user and put address in the input field
-    let address = document.getElementById('address').value;
-    if (address == '') {
+    if (address.value == '') {
       geoStatus = 'Please enter an address';
       return;
     }
-    let addressEncoded = encodeURIComponent(address);
-    let uriToFetch = `https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Street=&Single+Line+Input=${addressEncoded}&maxLocations=1&matchOutOfRange=true&inSR=4130&outSR=4130&f=pjson`;
+    let addressEncoded = encodeURIComponent(address.value);
+    let uriToFetch = `https://geocode.maps.co/search?street=${addressEncoded}&city=Atlanta`;
     // console.log(uriToFetch);
     fetch(uriToFetch)
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        if (data.candidates.length === 0) {
-          // console.log('Address not found');
-          geoStatus = 'Address not found. Example: 123 Peachtree St. NE';
-          document.getElementById('npuCard')?.setAttribute('hidden', true);
-          return;
-        }
-        let latitude = data.candidates[0]?.location.y;
-        let longitude = data.candidates[0]?.location.x;
-        if (latitude && longitude) {
-          geoStatus =
-            'Location found!' +
-            latitude.toFixed(2) +
-            ', ' +
-            longitude.toFixed(2);
+        // if (data.candidates.length === 0) {
+        //   // console.log('Address not found');
+        //   geoStatus = 'Address not found. Example: 123 Peachtree St. NE';
+        //   document.getElementById('npuCard')?.setAttribute('hidden', true);
+        //   return;
+        // }
+        // console.log(data[0].lat, data[0].lon);
+        let latitude = Number(data[0]?.lat);
+        let longitude = Number(data[0]?.lon);
+        if (data[0]) {
+          // console.log(latitude, longitude);
+          geoStatus = 'Location found: ' + data[0].display_name;
           getNPU(latitude, longitude);
         } else {
+          geoStatus = 'Not found.. Example: 123 Peachtree St NE';
           results.innerText = '🤔';
-          npuLink.href = '/';
+          npuLink.removeAttribute('href');
         }
       });
   }
@@ -66,12 +62,19 @@
     let results = document.getElementById('results');
     let npuCard = document.getElementById('npuCard');
     let npuLink = document.getElementById('npuLink');
+    address.value = '';
     fetch(
       `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4130&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4130&f=json`
     )
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
+        if (data.features.length == 0) {
+          // console.log('No NPU found for this point.');
+          npuCard.setAttribute('hidden', true);
+          geoStatus += ' ⚠ Not inside Atlanta City limits!';
+          return;
+        }
         data.features[0].attributes.NAME;
         // ? console.log('NPU:' + data.features[0].attributes.NAME)
         // : console.log('not found');
@@ -93,17 +96,23 @@
     <div class="row m2">
       <br />
       <div class="input-field col s12">
-        <input id="address" type="text" />
-        <label for="Address">Address</label>
+        <input
+          name="address"
+          id="address"
+          type="text"
+          autocomplete="address-line1"
+        />
+        <label for="address">Address</label>
         <div class="row">
           <div class="col">
-            <button on:click={addySearch} class="btn teal m-2"
+            <button on:click|preventDefault={addySearch} class="btn teal m-2"
               >Address Search</button
             >
           </div>
           <div class="col">
-            <button on:click={geoLocate} class="btn amber accent-3 m-2"
-              >🧭 Locate Me</button
+            <button
+              on:click|preventDefault={geoLocate}
+              class="btn amber accent-3 m-2">🧭 Locate Me</button
             >
           </div>
         </div>
@@ -118,6 +127,7 @@
 
   <div id="npuCard" class="center-align" hidden>
     <div class="cardParent">
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="card">
         <div class="card-content center-align">
           <h3>YOUR NPU IS:</h3>
