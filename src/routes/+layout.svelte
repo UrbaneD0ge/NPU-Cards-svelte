@@ -8,6 +8,9 @@
     {#if $page.route.id !== '/viewall'}
       <li><a href="/viewall">View All NPUs</a></li>
     {/if}
+    {#if $page.route.id !== '/signup'}
+      <li><a href="/signup">Email Reminders</a></li>
+    {/if}
   </ul>
 </nav>
 
