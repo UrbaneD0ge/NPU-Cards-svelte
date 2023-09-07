@@ -1,5 +1,7 @@
 <script>
   export let data;
+  import { Router } from 'svelte-navigator';
+  import BackButton from '../BackButton.svelte';
 
   $: ({ NPUs } = data);
 </script>
@@ -56,9 +58,9 @@
     </div>
   </div>
 </div>
-<footer class="center-align">
-  <a href="/">↩ Go Back</a>
-</footer>
+<Router>
+  <BackButton />
+</Router>
 
 <style>
   @font-face {
