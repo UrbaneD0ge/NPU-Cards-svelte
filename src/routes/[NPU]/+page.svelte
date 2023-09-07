@@ -57,7 +57,7 @@
   </div>
 </div>
 <footer class="center-align">
-  <a href="/">↩ Go Back</a>
+  <a href="/">↩ Search</a>
 </footer>
 
 <style>
