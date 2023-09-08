@@ -82,7 +82,8 @@
           let npu = data.features[0].attributes.NAME;
           results.innerText = npu;
           npuCard.removeAttribute('hidden');
-          npuCardBack.setAttribute('hidden', true);
+          // npuCardBack.setAttribute('hidden', true);
+          showCardBack = !showCardBack;
           npuLink.href = `/${npu}`;
         } catch {
           results.innerText = '🤔';
@@ -90,6 +91,8 @@
         }
       });
   }
+
+  let showCardBack = false;
 </script>
 
 <div>
@@ -127,28 +130,28 @@
   </form>
 
   <div id="npuCardBack" class="center-align">
-    <div class="cardParent">
+    <div class="cardParent flip-box">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div class="card">
+      <div class="card flip-box-inner" class:flip-it={showCardBack}>
         <div class="card-content center-align">
           <img alt="Atlanta NPU logo" src="./map_logo.png" width="300px" />
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div id="npuCard" class="center-align" hidden>
-  <div class="cardParent">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="card">
-      <div class="card-content center-align">
-        <h3>YOUR NPU IS:</h3>
-        <a id="npuLink">
-          <!-- svelte-ignore a11y-missing-content -->
-          <h1 id="results" />
-        </a>
-        <br />
+  <div id="npuCard" class="center-align" class:flip-it={!showCardBack}>
+    <div class="cardParent">
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div class="card">
+        <div class="card-content center-align">
+          <h3>YOUR NPU IS:</h3>
+          <a id="npuLink">
+            <!-- svelte-ignore a11y-missing-content -->
+            <h1 id="results" />
+          </a>
+          <br />
+        </div>
       </div>
     </div>
   </div>
@@ -205,5 +208,22 @@
   }
   button {
     font-family: 'Gt-Eesti';
+  }
+
+  /* card-flip animation */
+  .flip-it {
+    transform: rotateY(180deg);
+  }
+
+  .flip-box-inner {
+    position: relative;
+    text-align: center;
+    transition: transform 0.4s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-box {
+    background-color: transparent;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
 </style>
