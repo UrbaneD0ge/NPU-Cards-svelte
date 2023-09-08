@@ -82,6 +82,7 @@
           let npu = data.features[0].attributes.NAME;
           results.innerText = npu;
           npuCard.removeAttribute('hidden');
+          npuCardBack.setAttribute('hidden', true);
           npuLink.href = `/${npu}`;
         } catch {
           results.innerText = '🤔';
@@ -125,17 +126,29 @@
     </div>
   </form>
 
-  <div id="npuCard" class="center-align" hidden>
+  <div id="npuCardBack" class="center-align">
     <div class="cardParent">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="card">
         <div class="card-content center-align">
-          <h3>YOUR NPU IS:</h3>
-          <a id="npuLink">
-            <h1 id="results">Not found!</h1>
-          </a>
-          <br />
+          <img alt="Atlanta NPU logo" src="./map_logo.png" width="300px" />
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="npuCard" class="center-align" hidden>
+  <div class="cardParent">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class="card">
+      <div class="card-content center-align">
+        <h3>YOUR NPU IS:</h3>
+        <a id="npuLink">
+          <!-- svelte-ignore a11y-missing-content -->
+          <h1 id="results" />
+        </a>
+        <br />
       </div>
     </div>
   </div>
