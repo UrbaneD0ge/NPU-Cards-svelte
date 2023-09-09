@@ -30,25 +30,21 @@
       geoStatus = 'Please enter an address';
       return;
     }
+    let placeName = document.getElementById('placeName');
     let addressEncoded = encodeURIComponent(address.value);
     let uriToFetch = `https://geocode.maps.co/search?street=${addressEncoded}&city=Atlanta`;
     // console.log(uriToFetch);
     fetch(uriToFetch)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
-        // if (data.candidates.length === 0) {
-        //   // console.log('Address not found');
-        //   geoStatus = 'Address not found. Example: 123 Peachtree St. NE';
-        //   document.getElementById('npuCard')?.setAttribute('hidden', true);
-        //   return;
-        // }
         // console.log(data[0].lat, data[0].lon);
         let latitude = Number(data[0]?.lat);
         let longitude = Number(data[0]?.lon);
         if (data[0]) {
           // console.log(latitude, longitude);
-          geoStatus = 'Location found: ' + data[0].display_name;
+          geoStatus = 'Location found!';
+          placeName.innerText =
+            '📍 ' + data[0].display_name.replace('Atlanta,', '\nAtlanta,');
           getNPU(latitude, longitude);
         } else {
           geoStatus = 'Not found.. Example: 123 Peachtree St NE';
@@ -89,6 +85,13 @@
         }
       });
   }
+
+  function clearForm() {
+    results.innerText = '';
+    npuCard.setAttribute('hidden', true);
+    placeName.innerText = '';
+    geoStatus = 'Find your location';
+  }
 </script>
 
 <div>
@@ -97,6 +100,7 @@
       <br />
       <div class="input-field col s12">
         <input
+          on:focus={clearForm}
           name="address"
           id="address"
           type="text"
@@ -121,6 +125,8 @@
           class="helper-text"
           data-error="Can't get your location..">{geoStatus}</span
         >
+        <!-- svelte-ignore a11y-missing-content -->
+        <h6 id="placeName" />
       </div>
     </div>
   </form>
@@ -135,6 +141,7 @@
             <h1 id="results">Not found!</h1>
           </a>
           <br />
+          <p><a href="/signup">Get 📧 Reminders</a></p>
         </div>
       </div>
     </div>
@@ -161,6 +168,7 @@
 
   #results {
     font-size: 10rem;
+    color: #009395;
   }
 
   @font-face {
@@ -184,12 +192,26 @@
     font-size: 3.5rem;
   }
 
+  p a {
+    color: black;
+    /* text-decoration: underline; */
+    font-family: 'Gt-Eesti';
+    font-size: 1.2rem;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+  }
+
+  h6 {
+    font-family: 'Gt-Eesti';
+    font-size: 1.3rem;
+  }
   label,
   input,
   span {
     font-family: 'Gt-Eesti';
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
+
   button {
     font-family: 'Gt-Eesti';
   }
