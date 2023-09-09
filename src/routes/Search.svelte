@@ -1,5 +1,6 @@
 <script>
   let geoStatus = 'Find your location';
+  let showCardBack = false;
 
   function geoLocate() {
     // Get the location of the user and put address in the input field
@@ -37,12 +38,7 @@
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        // if (data.candidates.length === 0) {
-        //   // console.log('Address not found');
-        //   geoStatus = 'Address not found. Example: 123 Peachtree St. NE';
-        //   document.getElementById('npuCard')?.setAttribute('hidden', true);
-        //   return;
-        // }
+
         // console.log(data[0].lat, data[0].lon);
         let latitude = Number(data[0]?.lat);
         let longitude = Number(data[0]?.lon);
@@ -83,7 +79,7 @@
           results.innerText = npu;
           npuCard.removeAttribute('hidden');
           // npuCardBack.setAttribute('hidden', true);
-          showCardBack = !showCardBack;
+          showCardBack = true;
           npuLink.href = `/${npu}`;
         } catch {
           results.innerText = '🤔';
@@ -92,7 +88,7 @@
       });
   }
 
-  let showCardBack = false;
+  const toggleShowBack = () => (showCardBack = !showCardBack);
 </script>
 
 <div>
@@ -131,20 +127,23 @@
 
   <div id="npuCardBack" class="center-align">
     <div class="cardParent flip-box">
+      <!-- FRONT -->
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div class="card flip-box-inner" class:flip-it={showCardBack}>
+      <div
+        class="card flip-box-inner flip-box-front"
+        class:flip-it={showCardBack}
+      >
         <div class="card-content center-align">
           <img alt="Atlanta NPU logo" src="./map_logo.png" width="300px" />
         </div>
       </div>
-    </div>
-  </div>
 
-  <div id="npuCard" class="center-align" class:flip-it={!showCardBack}>
-    <div class="cardParent">
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div class="card">
-        <div class="card-content center-align">
+      <!-- BACK -->
+      <div
+        class="card flip-box-back flip-box-inner"
+        class:flip-it={!showCardBack}
+      >
+        <div id="npuCard" class="card-content center-align" hidden>
           <h3>YOUR NPU IS:</h3>
           <a id="npuLink">
             <!-- svelte-ignore a11y-missing-content -->
@@ -161,6 +160,7 @@
   .cardParent {
     display: flex;
     justify-content: center;
+    height: 380px;
   }
 
   .card {
@@ -212,18 +212,25 @@
 
   /* card-flip animation */
   .flip-it {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
   }
 
   .flip-box-inner {
     position: relative;
     text-align: center;
-    transition: transform 0.4s;
+    transition: transform 3s;
     transform-style: preserve-3d;
   }
 
   .flip-box {
     background-color: transparent;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    /* perspective: 1000px; */
+  }
+
+  .flip-box-front,
+  .flip-box-back {
+    position: absolute;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
   }
 </style>
