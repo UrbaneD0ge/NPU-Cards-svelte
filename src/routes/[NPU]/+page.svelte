@@ -57,7 +57,7 @@
   </div>
 </div>
 <footer class="center-align">
-  <a href="/">↩ Search</a>
+  <a href="/">↩ Search</a> | <a href="/signup">Get 📧 Reminders</a>
 </footer>
 
 <style>
