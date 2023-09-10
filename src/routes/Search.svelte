@@ -276,7 +276,7 @@
   }
 
   .input-field {
-    transition: all 5s ease-in-out;
+    transition: all 1s ease-in-out;
   }
 
   /* card-flip animation */
@@ -287,7 +287,7 @@
   .flip-box-inner {
     position: relative;
     text-align: center;
-    transition: transform 2s;
+    transition: transform 1.5s;
     transform-style: preserve-3d;
   }
 
