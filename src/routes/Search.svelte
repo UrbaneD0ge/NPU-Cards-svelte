@@ -1,8 +1,11 @@
 <script>
+  import { fade } from 'svelte/transition';
   let geoStatus = 'Find your location';
   let showCardBack = false;
-
+  let placeName =
+    'Search for your address below, or use your current location!';
   function geoLocate() {
+    placeName = 'Using GeoLocation 📡';
     // Get the location of the user and put address in the input field
     if (!navigator.geolocation) {
       geoStatus = 'Geolocation is not supported by your browser';
@@ -31,7 +34,6 @@
       geoStatus = 'Please enter an address';
       return;
     }
-    let placeName = document.getElementById('placeName');
     let addressEncoded = encodeURIComponent(address.value);
     let uriToFetch = `https://geocode.maps.co/search?street=${addressEncoded}&city=Atlanta`;
     // console.log(uriToFetch);
@@ -44,7 +46,7 @@
         if (data[0]) {
           // console.log(latitude, longitude);
           geoStatus = 'Location found!';
-          placeName.innerText =
+          placeName =
             '📍 ' + data[0].display_name.replace('Atlanta,', '\nAtlanta,');
           getNPU(latitude, longitude);
         } else {
@@ -94,12 +96,18 @@
     showCardBack = false;
     // results.innerText = '';
     // npuCard.setAttribute('hidden', true);
-    placeName.innerText = '';
+    placeName = 'Search for your address below, or use your current location!';
     geoStatus = 'Find your location';
   }
 </script>
 
 <div>
+  {#key placeName}
+    <h2 transition:fade style="position:absolute">
+      {placeName}
+      <!-- Search for your address below, or use your current location! -->
+    </h2>
+  {/key}
   <form class="col s12">
     <div class="row">
       <br />
@@ -133,12 +141,11 @@
           class="helper-text"
           data-error="Can't get your location..">{geoStatus}</span
         >
-        <!-- svelte-ignore a11y-missing-content -->
-        <h6 id="placeName" />
       </div>
     </div>
   </form>
 
+  <!-- FRONT (logo) -->
   <div id="npuCardBack" class="center-align">
     <div class="cardParent flip-box">
       <!-- FRONT -->
@@ -152,19 +159,21 @@
         </div>
       </div>
 
-      <!-- BACK -->
+      <!-- BACK (NPU) -->
       <div
         class="card flip-box-back flip-box-inner"
         class:flip-it={!showCardBack}
       >
-        <div id="npuCard" class="card-content center-align" hidden>
-          <h3>YOUR NPU IS:</h3>
-          <a id="npuLink">
-            <!-- svelte-ignore a11y-missing-content -->
-            <h1 id="results" />
-          </a>
-          <br />
-          <p><a href="/signup">Get 📧 Reminders</a></p>
+        <div class="cardBack">
+          <div id="npuCard" class="card-content center-align" hidden>
+            <h3>YOUR NPU IS:</h3>
+            <a id="npuLink">
+              <!-- svelte-ignore a11y-missing-content -->
+              <h1 id="results" />
+            </a>
+            <br />
+            <p><a href="/signup">Get 📧 Reminders</a></p>
+          </div>
         </div>
       </div>
     </div>
@@ -194,9 +203,31 @@
     transition: scale 0.5s ease-out;
   }
 
+  .cardBack {
+    /* background-color: white; */
+    border: 10px solid #e0c300;
+    /* border-radius: 7%; */
+    /* clip-path: 50%; */
+  }
+
   .card-content {
     width: 350px;
     height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .card-content {
+      width: 90svw;
+      aspect-ratio: 1;
+    }
+
+    img {
+      width: 80svw;
+      /* aspect-ratio: 1; */
+    }
   }
 
   .card:hover {
@@ -245,7 +276,14 @@
     margin: 0;
   }
 
+  h2 {
+    margin-block: 0;
+    font-family: 'Gt-Eesti';
+    font-size: 1.4rem;
+  }
+
   h3 {
+    margin-block: 0;
     font-family: 'Tungsten-SemiBold';
     font-size: 3.5rem;
   }
@@ -259,10 +297,6 @@
     padding-bottom: 2px;
   }
 
-  h6 {
-    font-family: 'Gt-Eesti';
-    font-size: 1.3rem;
-  }
   label,
   input,
   span {

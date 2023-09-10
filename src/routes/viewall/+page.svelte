@@ -86,13 +86,22 @@
   }
 
   .card {
-    width: 20svw;
+    width: 350px;
     min-width: 2.8in;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     scale: 1;
     transition: scale 0.5s ease-out;
+    border: 3px solid #e0c300;
+    /* aspect-ratio: 1; */
+  }
+
+  @media only screen and (max-width: 400px) {
+    .card {
+      width: 80svw;
+      aspect-ratio: 1;
+    }
   }
 
   .card:hover {
