@@ -79,8 +79,8 @@
           results.innerText = npu;
           npuCard.removeAttribute('hidden');
           // npuCardBack.setAttribute('hidden', true);
-          showCardBack = true;
           npuLink.href = `/${npu}`;
+          showCardBack = true;
         } catch {
           results.innerText = '🤔';
           npuCard.removeAttribute('hidden');
@@ -88,7 +88,7 @@
       });
   }
 
-  const toggleShowBack = () => (showCardBack = !showCardBack);
+  // const toggleShowBack = () => (showCardBack = !showCardBack);
 </script>
 
 <div>
@@ -105,14 +105,17 @@
         <label for="address">Address</label>
         <div class="row">
           <div class="col">
-            <button on:click|preventDefault={addySearch} class="btn teal m-2"
-              >Address Search</button
+            <button
+              on:click|preventDefault={addySearch}
+              class="btn m-2"
+              id="search">Address Search</button
             >
           </div>
           <div class="col">
             <button
               on:click|preventDefault={geoLocate}
-              class="btn amber accent-3 m-2">🧭 Locate Me</button
+              class="btn m-2"
+              id="locate">🧭 Locate Me</button
             >
           </div>
         </div>
@@ -130,7 +133,7 @@
       <!-- FRONT -->
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div
-        class="card flip-box-inner flip-box-front"
+        class="card flip-box-inner flip-box-front pattern"
         class:flip-it={showCardBack}
       >
         <div class="card-content center-align">
@@ -157,28 +160,6 @@
 </div>
 
 <style>
-  .cardParent {
-    display: flex;
-    justify-content: center;
-    height: 380px;
-  }
-
-  .card {
-    width: 350px;
-    height: 350px;
-    scale: 1;
-    transition: scale 0.5s ease-out;
-  }
-
-  .card:hover {
-    scale: 1.05;
-    transition: scale 0.5s ease-out;
-  }
-
-  #results {
-    font-size: 10rem;
-  }
-
   @font-face {
     font-family: 'Tungsten-SemiBold';
     src: url(/fonts/Tungsten-Semibold.otf) format('opentype');
@@ -190,11 +171,60 @@
     src: url(/fonts/GT-Eesti-Display-Regular.otf) format('opentype');
   }
 
+  .cardParent {
+    display: flex;
+    justify-content: center;
+    height: 380px;
+  }
+
+  .card {
+    scale: 1;
+    transition: scale 0.5s ease-out;
+  }
+
+  .card-content {
+    width: 350px;
+    height: 350px;
+  }
+
+  .card:hover {
+    scale: 1.05;
+    transition: scale 0.5s ease-out;
+  }
+
+  .pattern {
+    /* inset: 5%; */
+    background-color: #f5f5f5;
+    /* opacity: 0.8; */
+    background-image: linear-gradient(
+      -45deg,
+      #f5f5f5,
+      #f5f5f5 50%,
+      #e0c300 50%,
+      #e0c300
+    );
+    background-size: 11px 11px;
+    border: 10px solid whitesmoke;
+  }
+
+  #search {
+    background-color: #009395;
+  }
+
+  #locate {
+    background-color: #e0c300;
+  }
+
+  #results {
+    font-size: 10rem;
+  }
+
   h1 {
     font-family: 'Tungsten-SemiBold';
     font-size: 11rem;
     margin: 0;
   }
+
   h3 {
     font-family: 'Tungsten-SemiBold';
     font-size: 3.5rem;
@@ -206,6 +236,7 @@
     font-family: 'Gt-Eesti';
     font-size: 1.4rem;
   }
+
   button {
     font-family: 'Gt-Eesti';
   }
@@ -218,7 +249,7 @@
   .flip-box-inner {
     position: relative;
     text-align: center;
-    transition: transform 3s;
+    transition: transform 2s;
     transform-style: preserve-3d;
   }
 

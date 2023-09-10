@@ -1,5 +1,6 @@
 <script>
   import Search from './Search.svelte';
+  import Footer from './Footer.svelte';
   // import Nav from './Nav.svelte';
   // import Email from './Email.svelte';
 </script>
@@ -16,6 +17,8 @@
 
   <!-- <Email /> -->
 </div>
+
+<Footer />
 
 <style>
   @font-face {
