@@ -35,9 +35,11 @@
   h1 {
     font-family: 'Tungsten-SemiBold';
     font-size: 6rem;
+    margin: 1svh 0 0 0;
   }
 
   p {
+    margin-block: 0;
     font-family: 'Gt-Eesti';
     font-size: 1.4rem;
   }

@@ -68,7 +68,7 @@
         // console.log(data);
         if (data.features.length == 0) {
           // console.log('No NPU found for this point.');
-          npuCard.setAttribute('hidden', true);
+          // npuCard.setAttribute('hidden', true);
           geoStatus += ' ⚠ Not inside Atlanta City limits!';
           return;
         }
@@ -91,9 +91,9 @@
   // const toggleShowBack = () => (showCardBack = !showCardBack);
 
   function clearForm() {
-    showCardBack = true;
-    results.innerText = '';
-    npuCard.setAttribute('hidden', true);
+    showCardBack = false;
+    // results.innerText = '';
+    // npuCard.setAttribute('hidden', true);
     placeName.innerText = '';
     geoStatus = 'Find your location';
   }
@@ -101,7 +101,7 @@
 
 <div>
   <form class="col s12">
-    <div class="row m2">
+    <div class="row">
       <br />
       <div class="input-field col s12">
         <input
@@ -219,9 +219,16 @@
     border: 10px solid whitesmoke;
   }
 
+  /* #placeName {
+    transition: height 5s ease;
+  } */
   #results {
     font-size: 10rem;
     color: #009395;
+  }
+
+  .row {
+    margin-bottom: 10px !important;
   }
 
   #search {
@@ -261,10 +268,15 @@
   span {
     font-family: 'Gt-Eesti';
     font-size: 1.1rem;
+    margin-top: 5px;
   }
 
   button {
     font-family: 'Gt-Eesti';
+  }
+
+  .input-field {
+    transition: all 5s ease-in-out;
   }
 
   /* card-flip animation */
