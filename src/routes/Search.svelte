@@ -204,7 +204,6 @@
     transition: scale 0.5s ease-out;
   }
 
-
   .pattern {
     /* inset: 5%; */
     background-color: #f5f5f5;
@@ -218,6 +217,7 @@
     );
     background-size: 11px 11px;
     border: 10px solid whitesmoke;
+  }
 
   #results {
     font-size: 10rem;
