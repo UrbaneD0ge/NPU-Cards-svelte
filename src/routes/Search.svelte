@@ -218,6 +218,12 @@
     justify-content: center;
   }
 
+  @media only screen and (max-width: 530px) {
+    .input-field {
+      margin-top: 60px;
+    }
+  }
+
   @media only screen and (max-width: 400px) {
     .card-content {
       width: 90svw;
@@ -232,10 +238,6 @@
     button {
       font-size: 0.8rem !important;
       padding: 0 10px;
-    }
-
-    .input-field {
-      margin-top: 60px;
     }
   }
 
