@@ -228,6 +228,15 @@
       width: 80svw;
       /* aspect-ratio: 1; */
     }
+
+    button {
+      font-size: 0.8rem !important;
+      padding: 0 10px;
+    }
+
+    .input-field {
+      margin-top: 60px;
+    }
   }
 
   .card:hover {
@@ -236,9 +245,7 @@
   }
 
   .pattern {
-    /* inset: 5%; */
     background-color: #f5f5f5;
-    /* opacity: 0.8; */
     background-image: linear-gradient(
       -45deg,
       #f5f5f5,
@@ -250,9 +257,6 @@
     border: 10px solid whitesmoke;
   }
 
-  /* #placeName {
-    transition: height 5s ease;
-  } */
   #results {
     font-size: 10rem;
     color: #009395;

@@ -39,4 +39,11 @@
   li a {
     font-family: 'GT-Eesti';
   }
+
+  @media only screen and (max-width: 400px) {
+    li a {
+      font-size: 0.8rem;
+      padding-inline: 5px;
+    }
+  }
 </style>
