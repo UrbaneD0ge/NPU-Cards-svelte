@@ -1,5 +1,4 @@
 <script>
-  import { fail } from '@sveltejs/kit';
   import { page } from '$app/stores';
 </script>
 
@@ -26,12 +25,6 @@
     src: url(/fonts/GT-Eesti-Display-Regular.otf) format('opentype');
   }
 
-  h1 {
-    font-family: 'Tungsten-SemiBold';
-    text-transform: uppercase;
-    font-size: 10rem;
-  }
-
   h2 {
     font-family: 'GT-Eesti';
   }
@@ -44,7 +37,6 @@
     margin-block: 10svh;
   }
 
-  h1,
   h2 {
     margin: 0;
     padding: 0;

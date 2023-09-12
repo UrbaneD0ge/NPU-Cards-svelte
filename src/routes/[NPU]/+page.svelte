@@ -85,16 +85,17 @@
   }
   .card {
     padding: 10px;
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
     border: 4px solid #e0c300;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
+  .card-action,
   .card-content {
-    padding: 16px;
+    padding-block: 2px !important;
   }
 
   #cardParent {
@@ -105,7 +106,7 @@
     align-items: center;
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 500px) {
     .card {
       width: 90svw;
     }
