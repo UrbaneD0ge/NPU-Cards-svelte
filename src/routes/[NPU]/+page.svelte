@@ -56,9 +56,9 @@
     </div>
   </div>
 </div>
-<footer class="center-align">
+<div class="center-align">
   <a href="/">↩ Search</a> | <a href="/signup">Get 📧 Reminders</a>
-</footer>
+</div>
 
 <style>
   @font-face {
@@ -110,5 +110,16 @@
     .card {
       width: 90svw;
     }
+  }
+
+  :global(body) {
+    background-color: whitesmoke;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  :global(main) {
+    flex: 1 0 auto;
   }
 </style>

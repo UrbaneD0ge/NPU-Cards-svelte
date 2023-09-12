@@ -1,9 +1,9 @@
-<footer>
-  <div class="footer-copyright">
+<footer class="page-footer transparent">
+  <div class="footer-copyright transparent">
     <div class="container copyright">
       <p>
         ©2023 <a href="http://kipdunlap.me" target="_blank">Kip Dunlap</a> for
-        the <wbr>
+        the <wbr />
         <a
           href="https://www.atlantaga.gov/government/departments/city-planning"
           target="_blank">Atlanta Department of City Planning</a
@@ -20,6 +20,7 @@
 
 <style>
   footer p {
+    color: black;
     font-size: x-small;
   }
 
