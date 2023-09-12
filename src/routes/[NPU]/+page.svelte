@@ -87,6 +87,14 @@
     padding: 10px;
     width: 400px;
     height: 400px;
+    border: 4px solid #e0c300;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-content {
+    padding: 16px;
   }
 
   #cardParent {
@@ -95,5 +103,11 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .card {
+      width: 90svw;
+    }
   }
 </style>
