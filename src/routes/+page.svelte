@@ -11,8 +11,6 @@
   <!-- <NPU /> -->
 </div>
 
-<Footer />
-
 <style>
   @font-face {
     font-family: 'Tungsten-SemiBold';

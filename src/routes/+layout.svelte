@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/stores';
+  import Footer from './Footer.svelte';
 </script>
 
 <nav class="navbar-fixed nav-wrapper black">
@@ -15,6 +16,8 @@
 </nav>
 
 <slot />
+
+<Footer />
 
 <style>
   @font-face {

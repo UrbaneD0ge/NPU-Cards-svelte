@@ -195,7 +195,8 @@
   .cardParent {
     display: flex;
     justify-content: center;
-    height: 380px;
+    align-items: center;
+    height: 55svh;
   }
 
   .card {
@@ -222,12 +223,19 @@
     .input-field {
       margin-top: 60px;
     }
+    .cardParent {
+      height: 55svh;
+    }
   }
 
   @media only screen and (max-width: 400px) {
     .card-content {
       width: 90svw;
       aspect-ratio: 1;
+    }
+
+    .cardParent {
+      height: 50svh;
     }
 
     img {
