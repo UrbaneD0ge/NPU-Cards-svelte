@@ -7,7 +7,6 @@
     <h2>Not the</h2>
     <br />
     <img src="404.png" alt="404 gold pendant" width="200px" />
-    <!-- <h1>404</h1> -->
     <h2>you were looking for.</h2>
   </div>
   <h4>Actually, {$page.status}: {$page.error.message}</h4>
