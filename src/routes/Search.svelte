@@ -1,5 +1,9 @@
 <script>
   import { fade } from 'svelte/transition';
+  // Create a store to hold the NPU value
+  import { writable } from 'svelte/store';
+  export const NPU = writable('');
+
   let geoStatus = 'Find your location';
   let showCardBack = false;
   let placeName =
@@ -79,6 +83,7 @@
         // : console.log('not found');
         try {
           let npu = data.features[0].attributes.NAME;
+          NPU.set(npu);
           results.innerText = npu;
           npuCard.removeAttribute('hidden');
           npuLink.href = `/${npu}`;

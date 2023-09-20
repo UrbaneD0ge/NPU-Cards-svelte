@@ -1,6 +1,6 @@
 <script>
   import Search from './Search.svelte';
-  import Footer from './Footer.svelte';
+  import Email from './Email.svelte';
 </script>
 
 <div class="container">
@@ -8,7 +8,7 @@
 
   <Search />
 
-  <!-- <NPU /> -->
+  <Email />
 </div>
 
 <style>
