@@ -12,7 +12,7 @@
 <div class="row">
   <div class="col s12">
     We'll send the results to this email:
-    <input type="text" name="NPU" value="NPU: {npu}" disabled />
+    <input type="text" name="NPU" value={npu} disabled />
     <form class="input-field">
       <input id="email_inline" type="email" class="validate" />
       <label for="email_inline">Email</label>

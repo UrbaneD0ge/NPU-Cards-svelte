@@ -11,6 +11,8 @@ export const actions = {
     let email = data.get("email");
     let NPU = data.get("NPU");
 
+    console.log(email, NPU)
+
     // send the email
     let transporter = nodemailer.createTransport({
       service: "smtp.forwardmail.net",
