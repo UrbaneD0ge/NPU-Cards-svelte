@@ -1,8 +1,6 @@
 <script>
   import { fade } from 'svelte/transition';
-  // Create a store to hold the NPU value
-  import { writable } from 'svelte/store';
-  export const NPU = writable('');
+  import { npu } from '../stores.js';
 
   let geoStatus = 'Find your location';
   let showCardBack = false;
@@ -82,11 +80,11 @@
         // ? console.log('NPU:' + data.features[0].attributes.NAME)
         // : console.log('not found');
         try {
-          let npu = data.features[0].attributes.NAME;
-          NPU.set(npu);
-          results.innerText = npu;
+          let cardFace = data.features[0].attributes.NAME;
+          npu.set(cardFace);
+          results.innerText = cardFace;
           npuCard.removeAttribute('hidden');
-          npuLink.href = `/${npu}`;
+          npuLink.href = `/${cardFace}`;
           showCardBack = true;
         } catch {
           results.innerText = '🤔';
