@@ -196,7 +196,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 55svh;
+    height: 50svh;
   }
 
   .card {
