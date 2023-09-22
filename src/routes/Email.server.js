@@ -3,9 +3,11 @@ import nodemailer from "nodemailer";
 import FWD_EMAIL_PW from '$static/private/FWD_EMAIL_PW.js'
 
 export const actions = {
-  sendEmail: (data) => {
+  sendEmail: async ({ request }) => {
+    console.log("sendEmail action called");
 
-    let data = new formData();
+    // create a new instance of the form data
+    const data = await request.formData();
 
     // get the data from the form
     let email = data.get("email");
@@ -31,6 +33,7 @@ export const actions = {
         html: ""
       }
     });
+
     transporter.sendMail(data, (err, info) => {
       if (err) {
         console.log(err);

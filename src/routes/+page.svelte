@@ -7,7 +7,7 @@
   <h1>NPU LOCATOR</h1>
 
   <Search />
-
+  <br />
   <Email />
 </div>
 

@@ -199,7 +199,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 55svh;
+    height: 60svh;
   }
 
   .card {
@@ -276,7 +276,7 @@
   }
 
   .row {
-    margin-bottom: 10px !important;
+    margin-bottom: 5px !important;
   }
 
   #search {
