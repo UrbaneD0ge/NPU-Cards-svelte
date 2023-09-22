@@ -1,28 +1,35 @@
-// Purpose: Email server-side route
 import nodemailer from "nodemailer";
-import FWD_EMAIL_PW from '$static/private/FWD_EMAIL_PW.js'
+import { FWD_EMAIL_PW } from '$env/static/private';
+
 
 export const actions = {
   sendEmail: async ({ request }) => {
-    console.log("sendEmail action called");
-
     // create a new instance of the form data
     const data = await request.formData();
 
     // get the data from the form
-    let email = data.get("email");
     let NPU = data.get("NPU");
+    let email = data.get("email");
 
-    console.log(email, NPU)
+    console.log("Email: ", email, "NPU: ", NPU);
+
 
     // send the email
     let transporter = nodemailer.createTransport({
-      service: "smtp.forwardmail.net",
+      host: "smtp.forwardmail.com",
       port: 587,
+      secure: true,
+      debug: true,
       auth: {
-        user: "npumail@atlantaga.gov",
+        user: "kdunlap@atlantaga.gov",
         pass: FWD_EMAIL_PW
       },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    let info = await transporter.sendMail({
       data: {
         from: "NPULocator@npuatlanta.org",
         to: email,
@@ -32,14 +39,20 @@ export const actions = {
         text: "You're a member of NPU " + NPU + ".",
         html: ""
       }
-    });
-
-    transporter.sendMail(data, (err, info) => {
-      if (err) {
+    }
+    )
+      .then(info => {
+        console.log("Message sent: %s", info.messageId);
+      })
+      .catch(err => {
         console.log(err);
-      } else {
-        console.log(info);
-      }
-    });
+      })
+  },
+
+  return: {
+    status: 200,
+    body: {
+      message: "Email sent successfully!"
+    }
   }
 };

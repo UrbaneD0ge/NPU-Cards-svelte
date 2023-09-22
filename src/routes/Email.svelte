@@ -1,6 +1,7 @@
 <script>
   import { npu } from '../stores.js';
   import { browser } from '$app/environment';
+  import { enhance } from '$app/forms';
 
   npu.subscribe((value) => {
     if (browser) {
@@ -12,12 +13,12 @@
 <div class="row">
   <div class="col s12">
     We'll send the results to this email:
-    <input type="text" name="NPU" value={npu} disabled />
-    <form class="input-field">
-      <input id="email_inline" type="email" class="validate" />
-      <label for="email_inline">Email</label>
+    <form action="?/sendEmail" method="POST" class="input-field" use:enhance>
+      <input name="NPU" value={npu} type="text" hidden />
+      <input name="email" id="email" type="email" class="validate" />
+      <label for="email">Email</label>
       <span class="helper-text" data-error="Invalid" data-success="" />
-      <button action="?/sendEmail" type="submit" class="btn">SUBMIT</button>
+      <button type="submit" class="btn">SUBMIT</button>
     </form>
   </div>
 </div>
