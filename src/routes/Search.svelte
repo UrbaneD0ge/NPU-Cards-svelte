@@ -1,10 +1,17 @@
 <script>
   import { fade } from 'svelte/transition';
+  import Loader from '$lib/Loader.svelte';
+
+  let isLoading = false;
+
   let geoStatus = 'Find your location';
   let showCardBack = false;
   let placeName =
     'Search for your address below, or use your current location!';
+
   function geoLocate() {
+    isLoading = true;
+    showCardBack = false;
     placeName = 'Using GeoLocation 📡';
     // Get the location of the user and put address in the input field
     if (!navigator.geolocation) {
@@ -29,9 +36,11 @@
   }
 
   function addySearch() {
+    isLoading = true;
     // Get the location of the user and put address in the input field
     if (address.value == '') {
       geoStatus = 'Please enter an address';
+      isLoading = false;
       return;
     }
     let addressEncoded = encodeURIComponent(address.value);
@@ -53,11 +62,12 @@
           geoStatus = 'Not found.. Example: 123 Peachtree St NE';
           results.innerText = '🤔';
           npuLink.removeAttribute('href');
+          isLoading = false;
         }
       });
   }
 
-  function getNPU(latitude, longitude) {
+  async function getNPU(latitude, longitude) {
     let results = document.getElementById('results');
     let npuCard = document.getElementById('npuCard');
     let npuLink = document.getElementById('npuLink');
@@ -87,12 +97,14 @@
           results.innerText = '🤔';
           npuCard.removeAttribute('hidden');
         }
-      });
+      })
+      .then(() => (isLoading = false));
   }
 
   // const toggleShowBack = () => (showCardBack = !showCardBack);
 
   function clearForm() {
+    isLoading = false;
     showCardBack = false;
     // results.innerText = '';
     // npuCard.setAttribute('hidden', true);
@@ -125,8 +137,10 @@
             <button
               on:click|preventDefault={addySearch}
               class="btn m-2"
-              id="search">Address Search</button
+              id="search"
             >
+              Address Search
+            </button>
           </div>
           <div class="col">
             <button
@@ -134,6 +148,11 @@
               class="btn m-2"
               id="locate">🧭 Locate Me</button
             >
+          </div>
+          <div class="col">
+            {#if isLoading}
+              <Loader />
+            {/if}
           </div>
         </div>
         <span
@@ -196,7 +215,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50svh;
+    height: 55svh;
   }
 
   .card {
@@ -219,12 +238,9 @@
     justify-content: center;
   }
 
-  @media only screen and (max-width: 530px) {
+  @media only screen and (max-width: 900px) {
     .input-field {
       margin-top: 60px;
-    }
-    .cardParent {
-      height: 55svh;
     }
   }
 

@@ -20,7 +20,7 @@
 
   h1 {
     font-family: 'Tungsten-SemiBold';
-    font-size: 6rem;
+    font-size: 5rem;
     margin: 1svh 0 0 0;
   }
 </style>
