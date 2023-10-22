@@ -9,6 +9,35 @@
 </div>
 
 <div id="card-container">
+  <div class="card col-2">
+    <h2 class="center-align"><a href="/APAB">APAB</a></h2>
+    <div class="card-content">
+      <p>
+        Chair: <strong>Anne Phillips </strong>
+      </p>
+      <p>
+        Meeting Frequency: <strong>3<sup>rd</sup> Saturdays at 10 AM </strong>
+      </p>
+      <p>
+        Meeting Location: <strong
+          >Atlanta City Hall, Old Council Chambers</strong
+        >
+      </p>
+    </div>
+    <div class="card-action text-darken-3">
+      <a
+        href="https://www.youtube.com/@neighborhoodplanningunitsa5501"
+        target="_blank"
+        noopener
+        noreferrer>YouTube Channel</a
+      >
+      <br />
+      <a href="https://apabatlanta.org/" target="_blank" noopener noreferrer
+        >Website Link</a
+      >
+    </div>
+  </div>
+
   {#each NPUs as unit}
     <div class="card col-2">
       <h2 class="center-align"><a href="/{unit.NPU}">NPU-{unit.NPU}</a></h2>
@@ -66,18 +95,16 @@
     src: url(/fonts/GT-Eesti-Display-Regular.otf) format('opentype');
   }
 
-  h2 {
-    margin: 2rem 2rem 0 2rem;
-  }
-
+  h2,
   h2 a {
     font-size: 5rem;
     color: black;
-    margin: 0 !important;
+    /* margin: 0 !important; */
+    margin: 2rem 2rem 0 2rem;
   }
 
   h1,
-  h2 a {
+  h2 {
     font-family: 'Tungsten-SemiBold';
   }
 
