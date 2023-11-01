@@ -1,14 +1,10 @@
 <script>
   import Search from './Search.svelte';
-  import Footer from './Footer.svelte';
 </script>
 
 <div class="container">
   <h1>NPU LOCATOR</h1>
-
   <Search />
-
-  <!-- <NPU /> -->
 </div>
 
 <style>

@@ -6,6 +6,9 @@
 <nav class="navbar-fixed nav-wrapper black">
   <a href="/" class="brand-logo left">NPU LOCATOR</a>
   <ul class="right">
+    {#if $page.route.id !== '/whatis'}
+      <li><a href="/whatis">What's an NPU?</a></li>
+    {/if}
     {#if $page.route.id !== '/viewall'}
       <li><a href="/viewall">View All NPUs</a></li>
     {/if}
