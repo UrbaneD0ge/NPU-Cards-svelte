@@ -138,7 +138,7 @@
               on:click|preventDefault={addySearch}
               class="btn m-2"
               id="search"
-            >
+              ><i class="material-icons">home</i>
               Address Search
             </button>
           </div>
@@ -146,7 +146,8 @@
             <button
               on:click|preventDefault={geoLocate}
               class="btn m-2"
-              id="locate">🧭 Locate Me</button
+              id="locate"
+              ><i class="material-icons">my_location</i> Locate Me</button
             >
           </div>
           <div class="col">
@@ -209,6 +210,17 @@
   @font-face {
     font-family: 'GT-Eesti';
     src: url(/fonts/GT-Eesti-Display-Regular.otf) format('opentype');
+  }
+
+  i {
+    font-size: 1.5rem;
+    padding: 0 5px;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .cardParent {
