@@ -247,11 +247,12 @@
   @media only screen and (max-width: 400px) {
     .card-content {
       width: 90svw;
+      height: 90svw;
       aspect-ratio: 1;
     }
 
     .cardParent {
-      height: 50svh;
+      height: 45svh;
     }
 
     img {
