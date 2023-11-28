@@ -43,12 +43,12 @@
           </p>
         {/if}
       </div>
-      <div class="card-action text-darken-3">
-        <a href={unit.ZoomURL} target="_blank" noopener noreferrer>Zoom Link</a>
-        <br />
-        <a href={unit.bylawsURL} target="_blank" noopener noreferrer
-          >Bylaws Link</a
-        >
+      <div class="card-action text-darken-3 center-align">
+        <strong>
+          <a href={unit.bylawsURL} target="_blank" noopener noreferrer>Bylaws</a
+          >
+          <a href={unit.ZoomURL} target="_blank" noopener noreferrer>Zoom</a>
+        </strong>
       </div>
     </div>
   {/each}
