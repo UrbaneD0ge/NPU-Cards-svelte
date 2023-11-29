@@ -74,4 +74,14 @@
   li a {
     font-family: 'GT-Eesti';
   }
+
+  :global(footer) {
+    position: sticky;
+    top: 100vh;
+  }
+
+  :global(html, main, body) {
+    min-height: 95svh;
+    padding: 0;
+  }
 </style>

@@ -6,8 +6,7 @@
 
   let geoStatus = 'Find your location';
   let showCardBack = false;
-  let placeName =
-    'Search for your address below, or use your current location!';
+  let placeName = 'Search by address below, or use your current location!';
 
   function geoLocate() {
     isLoading = true;
@@ -73,7 +72,7 @@
     let npuLink = document.getElementById('npuLink');
     address.value = '';
     fetch(
-      `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4130&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4130&f=json`
+      `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4130&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4130&f=json`,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -108,63 +107,64 @@
     showCardBack = false;
     // results.innerText = '';
     // npuCard.setAttribute('hidden', true);
-    placeName = 'Search for your address below, or use your current location!';
+    placeName = 'Search by address below, or use your current location!';
     geoStatus = 'Find your location';
   }
 </script>
 
-<div>
-  {#key placeName}
-    <h2 transition:fade style="position:absolute">
-      {placeName}
-      <!-- Search for your address below, or use your current location! -->
-    </h2>
-  {/key}
-  <form class="col s12">
-    <div class="row">
-      <br />
-      <div class="input-field col s12">
-        <input
-          on:focus={clearForm}
-          name="address"
-          id="address"
-          type="text"
-          autocomplete="address-line1"
-        />
-        <label for="address">Address</label>
-        <div class="row">
-          <div class="col">
-            <button
-              on:click|preventDefault={addySearch}
-              class="btn m-2"
-              id="search"
-              ><i class="material-icons">home</i>
-              Address Search
-            </button>
+<div id="box">
+  <div id="leftBox">
+    <form class="col s12">
+      {#key placeName}
+        <h2 transition:fade style="position:absolute">
+          {placeName}
+          <!-- Search for your address below, or use your current location! -->
+        </h2>
+      {/key}
+      <div class="row">
+        <br />
+        <div class="input-field col s12">
+          <input
+            on:focus={clearForm}
+            name="address"
+            id="address"
+            type="text"
+            autocomplete="address-line1"
+          />
+          <label for="address">Address</label>
+          <div class="row">
+            <div class="col">
+              <button
+                on:click|preventDefault={addySearch}
+                class="btn m-2"
+                id="search"
+                ><i class="material-icons">home</i>
+                Address Search
+              </button>
+            </div>
+            <div class="col">
+              <button
+                on:click|preventDefault={geoLocate}
+                class="btn m-2"
+                id="locate"
+                ><i class="material-icons">my_location</i> Locate Me</button
+              >
+            </div>
+            <div class="col">
+              {#if isLoading}
+                <Loader />
+              {/if}
+            </div>
           </div>
-          <div class="col">
-            <button
-              on:click|preventDefault={geoLocate}
-              class="btn m-2"
-              id="locate"
-              ><i class="material-icons">my_location</i> Locate Me</button
-            >
-          </div>
-          <div class="col">
-            {#if isLoading}
-              <Loader />
-            {/if}
-          </div>
+          <span
+            id="geoStatus"
+            class="helper-text"
+            data-error="Can't get your location..">{geoStatus}</span
+          >
         </div>
-        <span
-          id="geoStatus"
-          class="helper-text"
-          data-error="Can't get your location..">{geoStatus}</span
-        >
       </div>
-    </div>
-  </form>
-
+    </form>
+  </div>
   <!-- FRONT (logo) -->
   <div id="npuCardBack" class="center-align">
     <div class="cardParent flip-box">
@@ -227,7 +227,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 55svh;
+    min-height: 400px;
   }
 
   .card {
@@ -264,7 +264,7 @@
     }
 
     .cardParent {
-      height: 45svh;
+      min-height: 100svw;
     }
 
     img {
@@ -278,6 +278,25 @@
     }
   }
 
+  @media only screen and (min-width: 1024px) {
+    #box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    #leftBox h2 {
+      width: 50%;
+      /* margin-bottom: 2rem; */
+    }
+
+    label,
+    input,
+    span {
+      margin-top: 20px !important;
+    }
+  }
   .card:hover {
     scale: 1.05;
     transition: scale 0.5s ease-out;
@@ -345,7 +364,7 @@
   span {
     font-family: 'Gt-Eesti';
     font-size: 1.1rem;
-    margin-top: 5px;
+    margin-top: 10px;
   }
 
   button {
