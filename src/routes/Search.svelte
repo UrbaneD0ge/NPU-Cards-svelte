@@ -175,7 +175,7 @@
         class:flip-it={showCardBack}
       >
         <div class="card-content center-align">
-          <img alt="Atlanta NPU logo" src="./map_logo.png" width="300px" />
+          <img alt="Atlanta NPU logo" src="./map_logo.png" />
         </div>
       </div>
 
@@ -227,7 +227,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 400px;
+    min-height: 380px;
   }
 
   .card {
@@ -269,7 +269,6 @@
 
     img {
       width: 80svw;
-      /* aspect-ratio: 1; */
     }
 
     button {
@@ -278,7 +277,11 @@
     }
   }
 
-  @media only screen and (min-width: 1024px) {
+  @media only screen and (min-width: 1144px) {
+    img {
+      width: 400px;
+    }
+
     #box {
       display: flex;
       flex-direction: row;
@@ -295,6 +298,12 @@
     input,
     span {
       margin-top: 20px !important;
+    }
+
+    .card-content {
+      width: 500px;
+      height: 500px;
+      align-items: center;
     }
   }
   .card:hover {

@@ -69,7 +69,7 @@
 
   h2 {
     font-family: 'Tungsten-SemiBold';
-    margin: 30px 0 0;
+    margin: 0;
     font-size: 8rem;
   }
 
@@ -106,7 +106,7 @@
   }
 
   #cardParent {
-    /* margin: 3rem; */
+    margin-top: clamp(0px, 5svh, 20svh);
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -116,6 +116,7 @@
   @media only screen and (max-width: 500px) {
     .card {
       width: 90svw;
+      height: fit-content;
     }
   }
 
