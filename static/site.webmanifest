@@ -1,6 +1,6 @@
 {
-    "name": "NPU Finder",
-    "short_name": "NPU Finder",
+    "name": "NPU Locator",
+    "short_name": "NPU Locator",
     "icons": [
         {
             "src": "/android-chrome-36x36.png?v=2",

@@ -191,6 +191,7 @@
               <!-- svelte-ignore a11y-missing-content -->
               <h1 id="results" />
             </a>
+            <p>Click for more info!</p>
             <br />
             <p><a href="/signup">Get 📧 Reminders</a></p>
           </div>
@@ -290,7 +291,7 @@
     }
 
     #leftBox h2 {
-      width: 50%;
+      width: 46%;
       /* margin-bottom: 2rem; */
     }
 
