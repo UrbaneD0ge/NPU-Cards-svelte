@@ -187,12 +187,12 @@
       >
         <div class="cardBack">
           <div id="npuCard" class="card-content center-align" hidden>
-            <h3>YOUR NPU IS:</h3>
             <a id="npuLink">
+              <h3>YOUR NPU IS:</h3>
               <!-- svelte-ignore a11y-missing-content -->
               <h1 id="results" />
+              <p>Click for more info!</p>
             </a>
-            <p>Click for more info!</p>
             <br />
             <p><a href="/signup">Get 📧 Reminders</a></p>
           </div>
@@ -359,6 +359,11 @@
     margin-block: 0;
     font-family: 'Tungsten-SemiBold';
     font-size: 3.5rem;
+    color: black;
+  }
+
+  a p {
+    color: rgb(104, 104, 104);
   }
 
   p a {
