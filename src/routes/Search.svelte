@@ -11,7 +11,7 @@
   function geoLocate() {
     isLoading = true;
     showCardBack = false;
-    placeName = 'Using GeoLocation 📡';
+    placeName = 'Using GeoLocation <i class="material-icons">satellite_alt</i>';
     // Get the location of the user and put address in the input field
     if (!navigator.geolocation) {
       geoStatus = 'Geolocation is not supported by your browser';
@@ -55,7 +55,8 @@
           // console.log(latitude, longitude);
           geoStatus = 'Location found!';
           placeName =
-            '📍 ' + data[0].display_name.replace('Atlanta,', '\nAtlanta,');
+            '<i class="material-icons">location_on</i> ' +
+            data[0].display_name.replace('Atlanta,', '\nAtlanta,');
           getNPU(latitude, longitude);
         } else {
           geoStatus = 'Not found.. Example: 123 Peachtree St NE';
@@ -117,7 +118,7 @@
     <form class="col s12">
       {#key placeName}
         <h2 transition:fade style="position:absolute">
-          {placeName}
+          {@html placeName}
           <!-- Search for your address below, or use your current location! -->
         </h2>
       {/key}
