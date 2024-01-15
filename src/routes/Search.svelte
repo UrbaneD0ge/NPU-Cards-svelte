@@ -1,5 +1,4 @@
 <script>
-  import { fade } from 'svelte/transition';
   import Loader from '$lib/Loader.svelte';
 
   let isLoading = false;
@@ -116,12 +115,13 @@
 <div id="box">
   <div id="leftBox">
     <form class="col s12">
-      {#key placeName}
-        <h2 transition:fade style="position:absolute">
-          {@html placeName}
-          <!-- Search for your address below, or use your current location! -->
-        </h2>
-      {/key}
+      <!-- Main helper text -->
+      <!-- Search for your address below, or use your current location! -->
+      <h2 transition:fade style="position:absolute">
+        {@html placeName}
+      </h2>
+
+      <!-- address bar -->
       <div class="row">
         <br />
         <div class="input-field col s12">
@@ -180,7 +180,7 @@
         </div>
       </div>
 
-      <!-- BACK (NPU) -->
+      <!-- CARD BACK (NPU) -->
       <div
         class="card flip-box-back flip-box-inner"
         class:flip-it={!showCardBack}
