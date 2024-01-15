@@ -117,7 +117,7 @@
     <form class="col s12">
       <!-- Main helper text -->
       <!-- Search for your address below, or use your current location! -->
-      <h2 transition:fade style="position:absolute">
+      <h2 style="position:absolute">
         {@html placeName}
       </h2>
 
