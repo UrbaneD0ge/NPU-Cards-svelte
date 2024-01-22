@@ -19,4 +19,11 @@
     font-size: 5rem;
     margin: 1svh 0 0 0;
   }
+
+  @media only screen and (min-width: 1024px) {
+    .container {
+      width: 66%;
+      margin: 0 5svw;
+    }
+  }
 </style>

@@ -1,18 +1,16 @@
 <script>
-  import { fade } from 'svelte/transition';
   import Loader from '$lib/Loader.svelte';
 
   let isLoading = false;
 
   let geoStatus = 'Find your location';
   let showCardBack = false;
-  let placeName =
-    'Search for your address below, or use your current location!';
+  let placeName = 'Search by address below, or use your current location!';
 
   function geoLocate() {
     isLoading = true;
     showCardBack = false;
-    placeName = 'Using GeoLocation 📡';
+    placeName = 'Using GeoLocation <i class="material-icons">satellite_alt</i>';
     // Get the location of the user and put address in the input field
     if (!navigator.geolocation) {
       geoStatus = 'Geolocation is not supported by your browser';
@@ -56,7 +54,8 @@
           // console.log(latitude, longitude);
           geoStatus = 'Location found!';
           placeName =
-            '📍 ' + data[0].display_name.replace('Atlanta,', '\nAtlanta,');
+            '<i class="material-icons">location_on</i> ' +
+            data[0].display_name.replace('Atlanta,', '\nAtlanta,');
           getNPU(latitude, longitude);
         } else {
           geoStatus = 'Not found.. Example: 123 Peachtree St NE';
@@ -73,7 +72,7 @@
     let npuLink = document.getElementById('npuLink');
     address.value = '';
     fetch(
-      `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4130&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4130&f=json`
+      `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4130&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4130&f=json`,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -108,63 +107,65 @@
     showCardBack = false;
     // results.innerText = '';
     // npuCard.setAttribute('hidden', true);
-    placeName = 'Search for your address below, or use your current location!';
+    placeName = 'Search by address below, or use your current location!';
     geoStatus = 'Find your location';
   }
 </script>
 
-<div>
-  {#key placeName}
-    <h2 transition:fade style="position:absolute">
-      {placeName}
+<div id="box">
+  <div id="leftBox">
+    <form class="col s12">
+      <!-- Main helper text -->
       <!-- Search for your address below, or use your current location! -->
-    </h2>
-  {/key}
-  <form class="col s12">
-    <div class="row">
-      <br />
-      <div class="input-field col s12">
-        <input
-          on:focus={clearForm}
-          name="address"
-          id="address"
-          type="text"
-          autocomplete="address-line1"
-        />
-        <label for="address">Address</label>
-        <div class="row">
-          <div class="col">
-            <button
-              on:click|preventDefault={addySearch}
-              class="btn m-2"
-              id="search"
-              ><i class="material-icons">home</i>
-              Address Search
-            </button>
-          </div>
-          <div class="col">
-            <button
-              on:click|preventDefault={geoLocate}
-              class="btn m-2"
-              id="locate"
-              ><i class="material-icons">my_location</i> Locate Me</button
-            >
-          </div>
-          <div class="col">
-            {#if isLoading}
-              <Loader />
-            {/if}
-          </div>
-        </div>
-        <span
-          id="geoStatus"
-          class="helper-text"
-          data-error="Can't get your location..">{geoStatus}</span
-        >
-      </div>
-    </div>
-  </form>
+      <h2 style="position:absolute">
+        {@html placeName}
+      </h2>
 
+      <!-- address bar -->
+      <div class="row">
+        <br />
+        <div class="input-field col s12">
+          <input
+            on:focus={clearForm}
+            name="address"
+            id="address"
+            type="text"
+            autocomplete="address-line1"
+          />
+          <label for="address">Address</label>
+          <div class="row">
+            <div class="col">
+              <button
+                on:click|preventDefault={addySearch}
+                class="btn m-2"
+                id="search"
+                ><i class="material-icons">home</i>
+                Address Search
+              </button>
+            </div>
+            <div class="col">
+              <button
+                on:click|preventDefault={geoLocate}
+                class="btn m-2"
+                id="locate"
+                ><i class="material-icons">my_location</i> Locate Me</button
+              >
+            </div>
+            <div class="col">
+              {#if isLoading}
+                <Loader />
+              {/if}
+            </div>
+          </div>
+          <span
+            id="geoStatus"
+            class="helper-text"
+            data-error="Can't get your location..">{geoStatus}</span
+          >
+        </div>
+      </div>
+    </form>
+  </div>
   <!-- FRONT (logo) -->
   <div id="npuCardBack" class="center-align">
     <div class="cardParent flip-box">
@@ -175,21 +176,22 @@
         class:flip-it={showCardBack}
       >
         <div class="card-content center-align">
-          <img alt="Atlanta NPU logo" src="./map_logo.png" width="300px" />
+          <img alt="Atlanta NPU logo" src="./map_logo.png" />
         </div>
       </div>
 
-      <!-- BACK (NPU) -->
+      <!-- CARD BACK (NPU) -->
       <div
         class="card flip-box-back flip-box-inner"
         class:flip-it={!showCardBack}
       >
         <div class="cardBack">
           <div id="npuCard" class="card-content center-align" hidden>
-            <h3>YOUR NPU IS:</h3>
             <a id="npuLink">
+              <h3>YOUR NPU IS:</h3>
               <!-- svelte-ignore a11y-missing-content -->
               <h1 id="results" />
+              <p>Click for more info!</p>
             </a>
             <br />
             <p><a href="/signup">Get 📧 Reminders</a></p>
@@ -227,7 +229,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 55svh;
+    min-height: 380px;
   }
 
   .card {
@@ -264,12 +266,11 @@
     }
 
     .cardParent {
-      height: 45svh;
+      min-height: 100svw;
     }
 
     img {
       width: 80svw;
-      /* aspect-ratio: 1; */
     }
 
     button {
@@ -278,6 +279,35 @@
     }
   }
 
+  @media only screen and (min-width: 1144px) {
+    img {
+      width: 400px;
+    }
+
+    #box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    #leftBox h2 {
+      width: 46%;
+      /* margin-bottom: 2rem; */
+    }
+
+    label,
+    input,
+    span {
+      margin-top: 20px !important;
+    }
+
+    .card-content {
+      width: 500px;
+      height: 500px;
+      align-items: center;
+    }
+  }
   .card:hover {
     scale: 1.05;
     transition: scale 0.5s ease-out;
@@ -329,6 +359,11 @@
     margin-block: 0;
     font-family: 'Tungsten-SemiBold';
     font-size: 3.5rem;
+    color: black;
+  }
+
+  a p {
+    color: rgb(104, 104, 104);
   }
 
   p a {
@@ -345,7 +380,7 @@
   span {
     font-family: 'Gt-Eesti';
     font-size: 1.1rem;
-    margin-top: 5px;
+    margin-top: 10px;
   }
 
   button {

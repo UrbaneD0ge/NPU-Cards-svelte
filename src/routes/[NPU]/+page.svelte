@@ -5,16 +5,13 @@
 </script>
 
 <div id="cardParent" class="container">
-  <br /><br />
   <div class="col">
     <div class="card">
-      <h2 class="center-align">NPU-{NPUs.NPU}</h2>
+      <div class="center-align">
+        <h2>NPU-{NPUs.NPU}</h2>
+        <h6>{NPUs.nhoods}</h6>
+      </div>
       <div class="card-content">
-        <p>
-          Neighborhood Planning Unit: <strong>
-            {NPUs.NPU}
-          </strong>
-        </p>
         <p>
           Chair: <strong>
             <a href="mailto:{NPUs.chairE}">
@@ -45,9 +42,8 @@
           </p>
         {/if}
       </div>
-      <div class="card-action transparent text-darken-3">
+      <div class="card-action transparent text-darken-3 center-align">
         <a href={NPUs.ZoomURL} target="_blank" noopener noreferrer>Zoom Link</a>
-        <br />
         <a href={NPUs.bylawsURL} target="_blank" noopener noreferrer
           >Bylaws Link</a
         >
@@ -73,8 +69,15 @@
 
   h2 {
     font-family: 'Tungsten-SemiBold';
-    margin: 30px 0 0;
+    margin: 0;
     font-size: 8rem;
+  }
+
+  h6 {
+    font-family: 'GT-Eesti';
+    margin: 5px 1svh;
+    font-size: 0.8rem;
+    text-wrap: balance;
   }
 
   p {
@@ -85,6 +88,7 @@
   a {
     font-family: 'GT-Eesti';
   }
+
   .card {
     padding: 10px;
     width: 450px;
@@ -98,10 +102,11 @@
   .card-action,
   .card-content {
     padding-block: 2px !important;
+    margin: auto;
   }
 
   #cardParent {
-    /* margin: 3rem; */
+    margin-top: clamp(0px, 5svh, 20svh);
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -111,6 +116,7 @@
   @media only screen and (max-width: 500px) {
     .card {
       width: 90svw;
+      height: fit-content;
     }
   }
 
