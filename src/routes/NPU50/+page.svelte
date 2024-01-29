@@ -1,4 +1,12 @@
 <main>
+  <div style="position: relative;">
+    <img
+      src="https://static.wixstatic.com/media/82e69c_87419aa089c549c49028b8aa9e6604e6~mv2.png/v1/crop/x_10,y_0,w_1421,h_771/fill/w_979,h_531,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/82e69c_87419aa089c549c49028b8aa9e6604e6~mv2.png"
+      alt="Celebrating 50 Years"
+      width="100%"
+    />
+    <button id="learnMore">LEARN MORE</button>
+  </div>
   <div>
     <div class="imgRight">
       <div>
@@ -59,6 +67,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-inline: 10vw;
   }
 
   footer {
@@ -67,6 +76,23 @@
     justify-content: space-around;
     align-items: center;
     padding: 20px;
+  }
+
+  button {
+    background-color: #efb641;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Tungsten-SemiBold';
+    font-size: 2rem;
+    font-weight: 100;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 10svw;
+    text-wrap: nowrap;
   }
 
   h1 {
@@ -109,6 +135,12 @@
     text-align: center;
   }
 
+  #learnMore {
+    position: absolute;
+    top: 77%;
+    left: 14%;
+  }
+
   div > div {
     margin-inline: 30px;
   }
@@ -121,5 +153,50 @@
     margin-top: 0;
     margin-bottom: 0;
     color: whitesmoke;
+  }
+
+  @media (max-width: 1200px) {
+    button {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    main {
+      padding-inline: 5vw;
+    }
+
+    footer {
+      flex-direction: column;
+    }
+
+    footer > img {
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 1rem;
+      width: 20svw;
+    }
+
+    /* footer > ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px;
+    } */
+
+    .imgRight {
+      flex-direction: column;
+    }
+
+    .imgLeft {
+      flex-direction: column-reverse;
+    }
+
+    .center {
+      flex-direction: column;
+    }
   }
 </style>
