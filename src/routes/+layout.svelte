@@ -10,7 +10,7 @@
 </script>
 
 <nav class="navbar-fixed nav-wrapper black">
-  <a href="/" class="brand-logo left">NPU LOCATOR</a>
+  <a href="/" class="brand-logo left">NPU LOCATOR </a>
   <!-- svelte-ignore a11y-invalid-attribute -->
   <a href="#" data-target="mobile-demo" class="right sidenav-trigger"
     ><i class="material-icons">menu</i></a
