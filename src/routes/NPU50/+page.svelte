@@ -44,7 +44,7 @@
     />
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/About">About</a></li>
+      <li><a href="/whatis">About</a></li>
       <li>
         <a href="https://www.npuatlanta.org/npuuniversity">NPU University</a>
       </li>
@@ -71,7 +71,7 @@
 
   h1 {
     font-family: 'Tungsten-SemiBold';
-    font-size: 3vw;
+    font-size: 3rem;
     margin-top: 0;
     margin-bottom: 0;
     color: #efb641;
@@ -115,7 +115,7 @@
 
   li a {
     font-family: 'GT-Eesti';
-    font-size: 1vw;
+    font-size: 1rem;
     font-weight: 100;
     text-align: left;
     margin-top: 0;
