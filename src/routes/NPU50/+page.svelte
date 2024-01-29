@@ -25,9 +25,9 @@
     </div>
   </div>
 
-  <div style="margin-block: 20px;">
-    <div style="text-align: center;">
-      <h1 style="text-align: center;">STAY IN TOUCH!</h1>
+  <div class="center" style="margin-block: 20px;">
+    <div>
+      <h1>STAY IN TOUCH!</h1>
       <p>
         2024 is the 50th Anniversary of this esteemed system for collaborative
         neighborhood planning. Join the mailing list to stay up-to-date with
@@ -72,7 +72,6 @@
   h1 {
     font-family: 'Tungsten-SemiBold';
     font-size: 3vw;
-    text-align: left;
     margin-top: 0;
     margin-bottom: 0;
     color: #efb641;
@@ -82,7 +81,7 @@
     font-family: 'GT-Eesti';
     /* font-size: 2vw; */
     font-weight: 100;
-    text-align: left;
+    text-wrap: pretty;
     margin-top: 0;
     margin-bottom: 0;
     color: whitesmoke;
@@ -100,6 +99,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
   }
 
   div > div {
