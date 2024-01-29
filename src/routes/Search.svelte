@@ -89,6 +89,8 @@
         try {
           let npu = data.features[0].attributes.NAME;
           results.innerText = npu;
+          npuCard.style.backgroundImage = `url("./shapes/${npu} Icon TEAL.png")`;
+          console.log('background-image: url(./shapes/N Icon TEAL.png)');
           npuCard.removeAttribute('hidden');
           npuLink.href = `/${npu}`;
           showCardBack = true;
@@ -250,6 +252,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-position: 50% 45%;
+    background-repeat: no-repeat;
+    background-size: 70%;
   }
 
   @media only screen and (max-width: 900px) {
@@ -328,7 +333,13 @@
 
   #results {
     font-size: 10rem;
-    color: #009395;
+    color: black;
+  }
+
+  #results::before {
+    content: 'NPU-';
+    color: black;
+    /* opacity: 0.7; */
   }
 
   .row {
