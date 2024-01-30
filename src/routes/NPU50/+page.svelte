@@ -1,4 +1,26 @@
 <main>
+  <div style="text-align:center;width:40%">
+    <h2>NEIGHBORHOOD PLANNING UNITS</h2>
+    <h3 style="">Established 1974</h3>
+    <h4 style="text-align: left;">CELEBRATING</h4>
+    <h4 id="celeb50">
+      <img
+        src="./NPU 50th Logo_GOLD.png"
+        width="150px"
+        alt="Celebrating 50 logo"
+      />YEARS
+    </h4>
+    <div style="display: flex;">
+      <span class="bigQuote">"</span>
+      <p style="line-height: 130% ;">
+        Love must be a city filled<br />with people working<br />together to
+        improve the<br />quality of all our lives.
+      </p>
+      <span class="bigQuote">"</span>
+    </div>
+    <button>LEARN MORE</button>
+  </div>
+  <!-- Celebrating 50 Maynard PHOTO -->
   <div style="position: relative;">
     <img
       src="https://static.wixstatic.com/media/82e69c_87419aa089c549c49028b8aa9e6604e6~mv2.png/v1/crop/x_10,y_0,w_1421,h_771/fill/w_979,h_531,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/82e69c_87419aa089c549c49028b8aa9e6604e6~mv2.png"
@@ -103,6 +125,30 @@
     color: #efb641;
   }
 
+  h2 {
+    font-family: 'Tungsten-SemiBold';
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: whitesmoke;
+  }
+
+  h3 {
+    font-family: 'GT-Eesti';
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: whitesmoke;
+  }
+
+  h4 {
+    font-family: 'Tungsten-SemiBold';
+    font-size: 6rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #efb641;
+  }
+
   p {
     font-family: 'GT-Eesti';
     /* font-size: 2vw; */
@@ -110,6 +156,12 @@
     text-wrap: pretty;
     margin-top: 0;
     margin-bottom: 0;
+    color: whitesmoke;
+  }
+
+  .bigQuote {
+    font-family: 'GT-Eesti';
+    font-size: 3rem;
     color: whitesmoke;
   }
 
@@ -133,6 +185,12 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
+  }
+
+  #celeb50 {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
   }
 
   #learnMore {
