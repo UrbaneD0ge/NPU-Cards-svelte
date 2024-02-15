@@ -2,7 +2,7 @@
   import Loader from '$lib/Loader.svelte';
 
   let isLoading = false;
-
+  let neighborhood;
   let geoStatus = 'Find your location';
   let showCardBack = false;
   let placeName = 'Search by address below, or use your current location!';
@@ -72,22 +72,19 @@
     let npuLink = document.getElementById('npuLink');
     address.value = '';
     fetch(
-      `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4130&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4130&f=json`,
+      `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/NeighborhoodsHosted/FeatureServer/0/query?outFields=NAME%2C+NPU&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4326&f=json`,
     )
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
+        // if the response object contains no features, the location is not inside Atlanta city limits, otherwise success
         if (data.features.length == 0) {
-          // console.log('No NPU found for this point.');
-          // npuCard.setAttribute('hidden', true);
           geoStatus += ' ⚠ Not inside Atlanta City limits!';
           return;
         }
-        data.features[0].attributes.NAME;
-        // ? console.log('NPU:' + data.features[0].attributes.NAME)
-        // : console.log('not found');
         try {
-          let npu = data.features[0].attributes.NAME;
+          let npu = data.features[0].attributes.NPU;
+          neighborhood = data.features[0].attributes.NAME;
           results.innerText = npu;
           npuCard.removeAttribute('hidden');
           npuLink.href = `/${npu}`;
@@ -98,6 +95,7 @@
         }
       })
       .then(() => (isLoading = false));
+    return neighborhood;
   }
 
   // const toggleShowBack = () => (showCardBack = !showCardBack);
@@ -191,6 +189,9 @@
               <h3>YOUR NPU IS:</h3>
               <!-- svelte-ignore a11y-missing-content -->
               <h1 id="results" />
+              <p>Your Neighborhood is:</p>
+              <h5>{neighborhood}</h5>
+              <br />
               <p>Click for more info!</p>
             </a>
             <br />
@@ -359,6 +360,13 @@
     margin-block: 0;
     font-family: 'Tungsten-SemiBold';
     font-size: 3.5rem;
+    color: black;
+  }
+
+  h5 {
+    margin-block: 0;
+    font-family: 'Gt-Eesti';
+    font-size: 2rem;
     color: black;
   }
 
