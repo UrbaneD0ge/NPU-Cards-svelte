@@ -84,7 +84,7 @@
   :global(html, main, body) {
     min-height: 95svh;
     padding: 0;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     justify-content: space-between;
   }
