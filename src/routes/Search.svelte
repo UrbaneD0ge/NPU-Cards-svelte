@@ -189,10 +189,10 @@
               <h3>YOUR NPU IS:</h3>
               <!-- svelte-ignore a11y-missing-content -->
               <h1 id="results" />
+              <p>Click for more info!</p>
+              <br />
               <p>Your Neighborhood is:</p>
               <h5>{neighborhood}</h5>
-              <br />
-              <p>Click for more info!</p>
             </a>
             <br />
             <p><a href="/signup">Get 📧 Reminders</a></p>
@@ -278,6 +278,11 @@
       font-size: 0.8rem !important;
       padding: 0 10px;
     }
+
+    #results {
+      font-size: 8rem !important;
+      line-height: 80% !important;
+    }
   }
 
   @media only screen and (min-width: 1144px) {
@@ -330,6 +335,8 @@
   #results {
     font-size: 10rem;
     color: #009395;
+    margin-bottom: 0;
+    line-height: 100%;
   }
 
   .row {
