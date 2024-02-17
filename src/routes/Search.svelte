@@ -47,7 +47,7 @@
     fetch(uriToFetch)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data[0].lat, data[0].lon);
+        console.log(data[0]);
         let latitude = Number(data[0]?.lat);
         let longitude = Number(data[0]?.lon);
         if (data[0]) {
@@ -55,8 +55,8 @@
           geoStatus = 'Location found!';
           placeName =
             '<i class="material-icons">location_on</i> ' +
-            data[0].display_name.replace('Atlanta,', '\nAtlanta,');
-          getNPU(latitude, longitude);
+            data[0].display_name.replace(/, Atlanta.*/gis, '');
+          getNPU(latitude, longitude).catch((e) => console.error(e));
         } else {
           geoStatus = 'Not found.. Example: 123 Peachtree St NE';
           results.innerText = '🤔';
