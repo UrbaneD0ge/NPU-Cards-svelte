@@ -33,6 +33,12 @@
     return;
   }
 
+  function URLencode(str) {
+    return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+      return '%' + c.charCodeAt(0).toString(16);
+    });
+  };
+
   function addySearch() {
     isLoading = true;
     // Get the location of the user and put address in the input field
@@ -41,13 +47,14 @@
       isLoading = false;
       return;
     }
-    let addressEncoded = encodeURIComponent(address.value);
-    let uriToFetch = `https://geocode.maps.co/search?street=${addressEncoded}&city=Atlanta`;
-    // console.log(uriToFetch);
+    // let addressEncoded = encodeURIComponent(address.value);
+    let addressEncoded = URLencode(address.value);
+    let uriToFetch = `https://geocode.maps.co/search?street=${addressEncoded}&city=Atlanta&api_key=65d020c28318d700899573jks8870b7`;
+    console.log(uriToFetch);
     fetch(uriToFetch)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data[0]);
+        console.log(data);
         let latitude = Number(data[0]?.lat);
         let longitude = Number(data[0]?.lon);
         if (data[0]) {
