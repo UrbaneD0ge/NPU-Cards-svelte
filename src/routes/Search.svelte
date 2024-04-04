@@ -49,20 +49,20 @@
     }
     // let addressEncoded = encodeURIComponent(address.value);
     let addressEncoded = URLencode(address.value);
-    let uriToFetch = `https://geocode.maps.co/search?street=${addressEncoded}&city=Atlanta&api_key=65d020c28318d700899573jks8870b7`;
-    console.log(uriToFetch);
+    let uriToFetch = `https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Street=&Single+Line+Input=${addressEncoded}&maxLocations=1&inSR=4326&outSR=4326&matchOutOfRange=true=&f=pjson`;
+    // console.log(uriToFetch);
     fetch(uriToFetch)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        let latitude = Number(data[0]?.lat);
-        let longitude = Number(data[0]?.lon);
-        if (data[0]) {
+        let latitude = data.candidates[0]?.location.y;
+        let longitude = data.candidates[0]?.location.x;
+        if (data.candidates[0]) {
           // console.log(latitude, longitude);
           geoStatus = 'Location found!';
           placeName =
-            '<i class="material-icons">location_on</i> ' +
-            data[0].display_name.replace(/, Atlanta.*/gis, '');
+            '<i class="material-icons">location_on</i> ' + data.candidates[0].address.toUpperCase();
+            // data[0].display_name.replace(/, Atlanta.*/gis, '');
           getNPU(latitude, longitude).catch((e) => console.error(e));
         } else {
           geoStatus = 'Not found.. Example: 123 Peachtree St NE';
@@ -83,11 +83,38 @@
     )
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         // if the response object contains no features, the location is not inside Atlanta city limits, otherwise success
+        // TODO: Handle addresses in 'black holes' (not in any neighborhood, like Piedmont Park)
         if (data.features.length == 0) {
+          fetch(
+      `https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/Official_NPU/FeatureServer/0/query?where=1%3D1&outFields=NAME&geometry=${longitude}%2C${latitude}%2C${longitude}%2C${latitude}&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4326&f=json`,
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Fallback');
+        if (data.features.length == 0) {
+          // console.log('No NPU found for this point.');
+          // npuCard.setAttribute('hidden', true);
           geoStatus += ' ⚠ Not inside Atlanta City limits!';
           return;
+        }
+        data.features[0].attributes.NAME;
+        // ? console.log('NPU:' + data.features[0].attributes.NAME)
+        // : console.log('not found');
+        try {
+          let npu = data.features[0].attributes.NAME;
+          neighborhood = '[No Official Neighborhood]';
+          results.innerText = npu;
+          npuCard.removeAttribute('hidden');
+          npuLink.href = `/${npu}`;
+          showCardBack = true;
+        } catch {
+          results.innerText = '🤔';
+          npuCard.removeAttribute('hidden');
+        }
+      })
+      .then(() => (isLoading = false));
         }
         try {
           let npu = data.features[0].attributes.NPU;
