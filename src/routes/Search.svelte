@@ -47,14 +47,15 @@
       isLoading = false;
       return;
     }
-    // let addressEncoded = encodeURIComponent(address.value);
     let addressEncoded = URLencode(address.value);
-    let uriToFetch = `https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Street=&Single+Line+Input=${addressEncoded}&maxLocations=1&inSR=4326&outSR=4326&matchOutOfRange=true=&f=pjson`;
+    // console.log(addressEncoded);
+    let uriToFetch = `https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Address=${addressEncoded}&City=Atlanta&matchOutOfRange=true&outSR=4326&f=pjson`;
+    // https://gis.atlantaga.gov/dpcd/rest/services/SiteAddressPoint/GeocodeServer/findAddressCandidates?Address=1199+Merlin+Ave&Address2=&Address3=&Neighborhood=&City=Atlanta&Subregion=&Region=&Postal=&PostalExt=&CountryCode=&SingleLine=&outFields=&maxLocations=&matchOutOfRange=false&langCode=&locationType=&sourceCountry=&category=&location=&searchExtent=&outSR=&magicKey=&preferredLabelValues=&f=pjson
     // console.log(uriToFetch);
     fetch(uriToFetch)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         let latitude = data.candidates[0]?.location.y;
         let longitude = data.candidates[0]?.location.x;
         if (data.candidates[0]) {
